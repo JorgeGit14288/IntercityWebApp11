@@ -27,7 +27,7 @@ import org.json.JSONObject;
  *
  * @author intercitydev
  */
-public class RechargeAccount {
+public class httpRecargas {
 
     public boolean isConnect() throws MalformedURLException, IOException {
         boolean conectado = false;
@@ -135,7 +135,7 @@ public class RechargeAccount {
             recarga.setNo(i);
             recarga.setFecha(jsonArray.getJSONObject(i).getString("created_date"));
             recarga.setDescripcion(jsonArray.getJSONObject(i).getString("description"));
-            recarga.setCredito(String.valueOf(jsonArray.getJSONObject(i).getInt("credit")));
+            recarga.setMonto(String.valueOf(jsonArray.getJSONObject(i).getInt("credit")));
             recarga.setSaldoAnterior(jsonArray.getJSONObject(i).getString("before_balance"));
             recarga.setSaldoPosterior(jsonArray.getJSONObject(i).getString("after_balance"));
             
@@ -146,7 +146,7 @@ public class RechargeAccount {
             System.out.print("\n\nNo" + recargas.get(i).getNo());
             System.out.print("\nFecna " + recargas.get(i).getFecha());
             System.out.print("\nDescripcion " + recargas.get(i).getDescripcion());
-            System.out.print("\nMonto " + recargas.get(i).getCredito());
+            System.out.print("\nMonto " + recargas.get(i).getMonto());
             System.out.print("\nSaldo Anterior " + recargas.get(i).getSaldoAnterior());
             System.out.print("\nSaldo Posterior" + recargas.get(i).getSaldoPosterior());
 

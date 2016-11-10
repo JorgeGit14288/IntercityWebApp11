@@ -104,13 +104,16 @@ public class httpHistorial {
 
         for (int i = 0; i < jsonArray.length(); i++) {
             Llamadas llamada = new Llamadas();
-            llamada.setNo(i);
-            llamada.setCallstart(jsonArray.getJSONObject(i).getString("callstart"));
-            llamada.setCallednum(jsonArray.getJSONObject(i).getString("callednum"));
-            llamada.setNotes(jsonArray.getJSONObject(i).getString("notes"));
-            llamada.setBillseconds(String.valueOf(jsonArray.getJSONObject(i).getBigDecimal("billseconds")));
-            llamada.setCost(String.valueOf(jsonArray.getJSONObject(i).getBigDecimal("cost")));
-            llamada.setRate_cost(String.valueOf(jsonArray.getJSONObject(i).getBigDecimal("rate_cost")));
+            llamada.setNo(i+1);
+            llamada.setInicioLLamada(jsonArray.getJSONObject(i).getString("callstart"));
+            llamada.setNumero(jsonArray.getJSONObject(i).getString("callednum"));
+            llamada.setPais_operador(jsonArray.getJSONObject(i).getString("notes"));
+            llamada.setDuracionSegundos(String.valueOf(jsonArray.getJSONObject(i).getBigDecimal("billseconds")));
+            llamada.setCostoTotal(String.valueOf(jsonArray.getJSONObject(i).getBigDecimal("cost")));
+            llamada.setCostoMinuto(String.valueOf(jsonArray.getJSONObject(i).getBigDecimal("rate_cost")));
+            
+            long minutos = Long.parseLong(llamada.getDuracionSegundos())/60;
+            llamada.setDuracionMinutos(minutos);
 
             llamadas.add(llamada);
 
@@ -119,12 +122,14 @@ public class httpHistorial {
 
         for (int i = 0; i < llamadas.size(); i++) {
             System.out.print("\n\nNo" + llamadas.get(i).getNo());
-            System.out.print("  Fecna " + llamadas.get(i).getCallstart());
-            System.out.print("  Numero " + llamadas.get(i).getCallednum());
-            System.out.print("  Pais-Operador " + llamadas.get(i).getNotes());
-            System.out.print("  Cantidad de segundos " + llamadas.get(i).getBillseconds());
-            System.out.print("  Costo total " + llamadas.get(i).getCost());
-            System.out.print("  costo por minuto " + llamadas.get(i).getRate_cost());
+            System.out.print("  Fecna " + llamadas.get(i).getInicioLLamada());
+            System.out.print("  Numero " + llamadas.get(i).getNumero());
+            System.out.print("  Pais-Operador " + llamadas.get(i).getPais_operador());
+            System.out.print("  Cantidad de segundos " + llamadas.get(i).getDuracionSegundos());
+            System.out.print("  Costo total " + llamadas.get(i).getCostoTotal());
+            System.out.print("  costo por minuto " + llamadas.get(i).getCostoMinuto());
+            System.out.print("  costo por minuto " + llamadas.get(i).getDuracionMinutos());
+            
 
         }
 

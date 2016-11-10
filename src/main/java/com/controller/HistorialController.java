@@ -10,7 +10,9 @@ import com.dao.UsuariosDao;
 import com.entitys.Telefonos;
 import com.entitys.Usuarios;
 import com.jsonEntitys.Llamadas;
+import com.jsonEntitys.Recarga;
 import com.util.httpHistorial;
+import com.util.httpRecargas;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -68,7 +70,8 @@ public class HistorialController {
             TelefonosDao telDao = new TelefonosDao();
             telefono = telDao.getTelefono(telUser);
             usuario = userDao.getUsuario(telefono.getUsuarios().getIdUsuario());
-            String idAccount = usuario.getIdAccount();
+           // String idAccount = usuario.getIdAccount();
+            String idAccount ="22";
 
             String page = request.getParameter("page");
             String max = request.getParameter("max");
@@ -93,12 +96,67 @@ public class HistorialController {
 
         return mav;
     }
+    @RequestMapping("recargas.htm")
+    public ModelAndView Recargas(HttpServletRequest request) {
+        sesion = request.getSession();
+        ModelAndView mav = new ModelAndView();
 
-    @ModelAttribute("lista")
-    public List<Llamadas> obtenerCodigo() {
+        if (sesion.getAttribute("usuario") == null) {
+            mensaje = "No esta logeado para obtener las vistas";
+            mav.addObject("mensaje", mensaje);
+            mav.setViewName("login/login");
 
-        List<Llamadas> llamadas = new ArrayList<Llamadas>();
-        return llamadas;
+        } else {
+            mav.setViewName("historial/recargas");
+        }
+
+        return mav;
 
     }
+
+    @RequestMapping(value = "getRecargas.htm", method = RequestMethod.POST)
+    public ModelAndView getRecargas(HttpServletRequest request) {
+        sesion = request.getSession();
+        ModelAndView mav = new ModelAndView();
+
+        if (sesion.getAttribute("usuario") == null) {
+            mensaje = "No esta logeado para obtener las vistas";
+            mav.addObject("mensaje", mensaje);
+            mav.setViewName("login/login");
+
+        } else {
+            String telUser = sesion.getAttribute("usuario").toString();
+            Usuarios usuario = new Usuarios();
+            UsuariosDao userDao = new UsuariosDao();
+            Telefonos telefono = new Telefonos();
+            TelefonosDao telDao = new TelefonosDao();
+            telefono = telDao.getTelefono(telUser);
+            usuario = userDao.getUsuario(telefono.getUsuarios().getIdUsuario());
+           // String idAccount = usuario.getIdAccount();
+            String idAccount ="22";
+
+            String page = request.getParameter("page");
+            String max = request.getParameter("max");
+            String startDate = request.getParameter("startDate");
+            String endDate = request.getParameter("endDate");
+           
+            
+            System.out.println(idAccount +"Pagina "+page+" Maximo  "+max+" fecha inicial "+startDate+" fecha final "+endDate);
+
+            httpRecargas recargaHelper = new httpRecargas();
+
+            List<Recarga> recargas = recargaHelper.getRecargas(idAccount, page, max, startDate, endDate);
+            if (recargas.isEmpty()) {
+                mensaje = "No se encontro historial de recargas";
+                mav.addObject("mensaje", mensaje);
+                mav.setViewName("historial/recargas");
+            } else {
+                mav.addObject("llamadas", recargas);
+                mav.setViewName("historial/recargas");
+            }
+        }
+
+        return mav;
+    }
+   
 }

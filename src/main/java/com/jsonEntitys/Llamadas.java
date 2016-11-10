@@ -15,21 +15,13 @@ public class Llamadas {
     }
 
     private int no;
-    private String callstart;
-    private String callednum;
-    private String notes;
-    private String billseconds;
-    private String minutes;
-    private String cost;
-    private String rate_cost;
-
-    public String getRate_cost() {
-        return rate_cost;
-    }
-
-    public void setRate_cost(String rate_cost) {
-        this.rate_cost = rate_cost;
-    }
+    private String inicioLLamada;
+    private String Numero;
+    private String pais_operador;
+    private String duracionSegundos;
+    private long duracionMinutos;
+    private String costoTotal;
+    private String costoMinuto;
 
     public int getNo() {
         return no;
@@ -39,52 +31,62 @@ public class Llamadas {
         this.no = no;
     }
 
-    public String getCallstart() {
-        return callstart;
+    public String getInicioLLamada() {
+        return inicioLLamada;
     }
 
-    public void setCallstart(String callstart) {
-        this.callstart = callstart;
+    public void setInicioLLamada(String inicioLLamada) {
+        this.inicioLLamada = inicioLLamada;
     }
 
-    public String getCallednum() {
-        return callednum;
+    public String getNumero() {
+        return Numero;
     }
 
-    public void setCallednum(String callednum) {
-        this.callednum = callednum;
+    public void setNumero(String Numero) {
+        this.Numero = Numero;
     }
 
-    public String getNotes() {
-        return notes;
+    public String getPais_operador() {
+        return pais_operador;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public void setPais_operador(String pais_operador) {
+        this.pais_operador = pais_operador;
     }
 
-    public String getBillseconds() {
-        return billseconds;
+    public String getDuracionSegundos() {
+        return duracionSegundos;
     }
 
-    public void setBillseconds(String billseconds) {
-        this.billseconds = billseconds;
+    public void setDuracionSegundos(String duracionSegundos) {
+        this.duracionSegundos = duracionSegundos;
     }
 
-    public String getMinutes() {
-        return minutes;
+    public long getDuracionMinutos() {
+        return duracionMinutos;
     }
 
-    public void setMinutes(String minutes) {
-        this.minutes = minutes;
+    public void setDuracionMinutos(long duracionMinutos) {
+        this.duracionMinutos = duracionMinutos;
     }
 
-    public String getCost() {
-        return cost;
+    public String getCostoTotal() {
+        return costoTotal;
     }
 
-    public void setCost(String cost) {
-        this.cost = cost;
+    public void setCostoTotal(String costoTotal) {
+        this.costoTotal = costoTotal;
     }
+
+    public String getCostoMinuto() {
+        return costoMinuto;
+    }
+
+    public void setCostoMinuto(String costoMinuto) {
+        this.costoMinuto = costoMinuto;
+    }
+
+   
 
 }

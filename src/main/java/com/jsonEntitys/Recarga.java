@@ -19,7 +19,7 @@ public class Recarga {
     private String saldoAnterior; //after_balance
     private String saldoPosterior; //before_balance
     private String descripcion;  //descripcion
-    private String credito;      //credit
+  
     private String fecha;
 
     public String getFecha() {
@@ -80,13 +80,6 @@ public class Recarga {
         this.descripcion = descripcion;
     }
 
-    public String getCredito() {
-        return credito;
-    }
-
-    public void setCredito(String credito) {
-        this.credito = credito;
-    }
-    
+   
   
 }

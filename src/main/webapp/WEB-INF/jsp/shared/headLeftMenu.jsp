@@ -245,7 +245,7 @@
                             <a href="historial.htm">Historial de Llamadas</a>
                         </li>
                         <li>
-                            <a href="Historial con parametros">Busqueda en Historial</a>
+                            <a href="recargas.htm">Hisorial de Recargas</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

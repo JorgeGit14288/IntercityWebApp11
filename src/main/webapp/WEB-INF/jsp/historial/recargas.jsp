@@ -77,7 +77,7 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <center><label>Ingrese los parametros a buscar en el historial</label></center> 
-                                <form name="form1" method="POST" action="getHistorial.htm" role="form">
+                                <form name="form1" method="POST" action="getRecargas.htm" role="form">
 
                                     <div class="form-group">
                                         <label>Paginas</label>
@@ -95,10 +95,7 @@
                                         <label>Fecha de fin</label>
                                         <input type="date" name="endDate" class="form-control" placeholder="endDate" required>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Numero de destino</label>
-                                        <input type="number" name="destination" class="form-control" placeholder="code and number">
-                                    </div>
+                                    
 
                                     <button type="submit" class="btn btn-default">Ver Historial</button>
                                     <button type="reset" class="btn btn-default">Reiniciar form</button>
@@ -152,26 +149,24 @@
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
-                                                            <th>Fecha=Hora</th>
-                                                            <th>Destino</th>
-                                                            <th>Pais-Operador</th>
-                                                            <th>Segundos</th>
-                                                            <th>Minutos</th>
-                                                            <th>Costo-minuto</th>
-                                                            <th>Costo-Total</th>
+                                                            <th>Fecha</th>
+                                                            <th>Monto</th>
+                                                            <th>Saldo Anterior</th>
+                                                            <th>Saldo Posterior</th>
+                                                            <th>Descripcion</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <c:forEach items="${llamadas}" var="llamada">
+                                                        <c:forEach items="${recargas}" var="recarga">
                                                             <tr>
-                                                                <td><c:out value="${llamada.getNo()}" /></td>
-                                                                <td><c:out value="${llamada.getInicioLLamada()}" /></td>
-                                                                <td><c:out value="${llamada.getNumero()}" /></td>
-                                                                <td><c:out value="${llamada.getPais_operador()}" /></td>
-                                                                <td><c:out value="${llamada.getDuracionSegundos() }" /></td>
-                                                                <td><c:out value="${llamada.getDuracionMinutos() }" /></td>
-                                                                <td><c:out value="${llamada.getCostoMinuto()}" /></td>
-                                                                <td><c:out value="${llamada.getCostoTotal()}" /></td>
+                                                                <td><c:out value="${recarga.getNo()}" /></td>
+                                                                <td><c:out value="${recarga.getFecha()}" /></td>
+                                                                <td><c:out value="${recarga.getMonto()}" /></td>
+                                                                <td><c:out value="${recarga.getSaldoAnterior()}" /></td>
+                                                                <td><c:out value="${recarga.getSaldoPosterior() }" /></td>
+                                                                <td><c:out value="${recarga.getDescripcion() }" /></td>
+                                                                <td><c:out value="${recarga.getCostoMinuto()}" /></td>
+                                                                <td><c:out value="${recarga.getCostoTotal()}" /></td>
                                                                 
                                                             </tr>
                                                         </c:forEach>
