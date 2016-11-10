@@ -70,8 +70,8 @@ public class HistorialController {
             TelefonosDao telDao = new TelefonosDao();
             telefono = telDao.getTelefono(telUser);
             usuario = userDao.getUsuario(telefono.getUsuarios().getIdUsuario());
-           // String idAccount = usuario.getIdAccount();
-            String idAccount ="22";
+            String idAccount = usuario.getIdAccount();
+            //String idAccount ="22";
 
             String page = request.getParameter("page");
             String max = request.getParameter("max");
@@ -132,8 +132,8 @@ public class HistorialController {
             TelefonosDao telDao = new TelefonosDao();
             telefono = telDao.getTelefono(telUser);
             usuario = userDao.getUsuario(telefono.getUsuarios().getIdUsuario());
-           // String idAccount = usuario.getIdAccount();
-            String idAccount ="22";
+            String idAccount = usuario.getIdAccount();
+            //String idAccount ="22";
 
             String page = request.getParameter("page");
             String max = request.getParameter("max");
@@ -151,7 +151,7 @@ public class HistorialController {
                 mav.addObject("mensaje", mensaje);
                 mav.setViewName("historial/recargas");
             } else {
-                mav.addObject("llamadas", recargas);
+                mav.addObject("recargas", recargas);
                 mav.setViewName("historial/recargas");
             }
         }

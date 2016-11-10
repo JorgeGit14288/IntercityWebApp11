@@ -13,7 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>DashBoard</title>
+        <title>InterCity Dashboard</title>
 
         <jsp:include page="../shared/headDashboard.jsp" flush="true" />
 
@@ -64,7 +64,7 @@
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                               INFORMACION
+                                INFORMACION
                             </div>
                             <!-- /.panel-body -->
                         </div>
@@ -72,75 +72,66 @@
                     <div class="col-lg-8">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
-                                <div class="pull-right">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                            Actions
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right" role="menu">
-                                            <li><a href="#">Action</a>
-                                            </li>
-                                            <li><a href="#">Another action</a>
-                                            </li>
-                                            <li><a href="#">Something else here</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <i class=""></i> <center><label>FORMULARIO DE BUSQUEDA</label></center>
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                               FORMULARIOS
-                                <form name="form1" method="POST" action="getHistorial.htm" role="form">
+                                <center><label>Ingrese los parametros a buscar en el historial</label></center> 
+                                <form class="form-Registro" method="POST" action="validarRegistrarUsuarios.htm" >
+                                                <h2 class="form-signin-heading">INGRESE SUS DATOS </h2>                
+                                                <label for="idUsuario" >Id Uusario</label>
+                                                <input type="text" readonly name="idUsuario" value ="${user.getIdUsuario()}" id="idUsuario" /> 
+                                                <br>
+                                                <label for="Telefono" >Telefonos:</label><br>
 
-                                        <div class="form-group">
-                                            <label>Paginas</label>
-                                            <input type="number" name="page" class="form-control" placeholder="page" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Maximo de llamadas</label>
-                                            <input type="number" name="max" class="form-control" placeholder="max" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Fecha de inicio</label>
-                                            <input type="date" name="startDate" class="form-control" placeholder="startDate" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Fecha de fin</label>
-                                            <input type="date" name="endDate" class="form-control" placeholder="endDate" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Numero de destino</label>
-                                            <input type="number" name="destination" class="form-control" placeholder="code and number">
-                                        </div>
+                                                <c:forEach items="${listTel}" var="listTel">
+                                                    <input type="text"  name="telefono" value ="${listTel.getTelefonoArea()}" id="telefonos" /> 
+                                                    <c:out value="${listTel.getTelefonoArea()}" />
+                                                </c:forEach>
+                                                <label for="nombres" >Nombres</label>
+                                                <input type="text"  name="nombres"  id="nombre" required placeholder="first name" /> <br>
+                                                <label for="apellidos" >Apellidos</label>
+                                                <input type="text"  name="apellidos"  id="apellidos" required placeholder="last name" /><br>
+                                                <label for="direccion" >Direccion</label>
+                                                <input type="text"  name="direccion"  id="direccion" required placeholder="address" /><br>
+                                                <label for="ciudad" >Ciudad</label>
+                                                <input type="text"  name="ciudad"  id="city" required placeholder="city" /><br>
 
-                                        <button type="submit" class="btn btn-default">Ver Historial</button>
-                                        <button type="reset" class="btn btn-default">Reiniciar form</button>
-                                    </form>
+                                                <label for="codigo" >Codigo Postal</label>
+                                                <input type="num"  name="codigoPostal"  id="nombre" required placeholder="postal code" /><br>
+                                                <label for="email" >E-mail</label>
+                                                <input type="email" name="email"  id="nombre" required placeholder="example@example.com" /><br>
+                                                <label for="languaje"  >Lenguaje para su operador</label>
+                                                <select name="languaje"  required  >
+                                                    <option value="Es">Español</option> 
+                                                    <option value="En">Ingles</option> 
+                                                </select><br>
+                                                <label for="notify Email" >Notificar a e-mail</label>
+                                                <input type="checkbox"  name="notifyEmail"  /><br>
+                                                <label for="flag" >Notificar Flag</label>
+                                                <input type="checkbox"  name="notifyFlag"  /><br>
+                                                <button  type="submit"class="btn btn-default" >Confirmar</button>
+                                                <button type="reset" class="btn btn-default">Reiniciar form</button>
+                                            </form>
 
-                                    <div id="Error">
-                                        <Br>
-                                        <center>
+                                <div id="Error">
+                                    <Br>
+                                    <center>
 
-                                            <h3>
-                                                ${mensaje}
-                                            </h3>
+                                        <h5>
+                                            ${mensaje}
+                                        </h5>
 
-                                        </center>
+                                    </center>
 
-                                    </div>
+                                </div>
                             </div>
                             <!-- /.panel-body -->
                         </div>
                         <!-- /.panel -->
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <i class="fa fa-bar-chart-o fa-fw"></i> Bar Chart Example
+                                <i class=""></i> <center><label>RESULTADO DE LA BUSQUEDA</label></center>
                                 <div class="pull-right">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -164,27 +155,39 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-lg-10">
+                                    <div class="col-lg-12">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered table-hover table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Date</th>
-                                                        <th>Time</th>
-                                                        <th>Amount</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>3326</td>
-                                                        <td>10/21/2013</td>
-                                                        <td>3:29 PM</td>
-                                                        <td>$321.33</td>
-                                                    </tr>
-                                                    
-                                                </tbody>
-                                            </table>
+                                            <form action="editar.htm" method="GET" name="formLista" >
+                                                <table class="table table-bordered table-hover table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Fecha=Hora</th>
+                                                            <th>Destino</th>
+                                                            <th>Pais-Operador</th>
+                                                            <th>Segundos</th>
+                                                            <th>Minutos</th>
+                                                            <th>Costo-minuto</th>
+                                                            <th>Costo-Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <c:forEach items="${llamadas}" var="llamada">
+                                                            <tr>
+                                                                <td><c:out value="${llamada.getNo()}" /></td>
+                                                                <td><c:out value="${llamada.getInicioLLamada()}" /></td>
+                                                                <td><c:out value="${llamada.getNumero()}" /></td>
+                                                                <td><c:out value="${llamada.getPais_operador()}" /></td>
+                                                                <td><c:out value="${llamada.getDuracionSegundos() }" /></td>
+                                                                <td><c:out value="${llamada.getDuracionMinutos() }" /></td>
+                                                                <td><c:out value="${llamada.getCostoMinuto()}" /></td>
+                                                                <td><c:out value="${llamada.getCostoTotal()}" /></td>
+                                                                
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </form>
                                         </div>
                                         <!-- /.table-responsive -->
                                     </div>

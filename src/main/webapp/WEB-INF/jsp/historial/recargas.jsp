@@ -165,9 +165,6 @@
                                                                 <td><c:out value="${recarga.getSaldoAnterior()}" /></td>
                                                                 <td><c:out value="${recarga.getSaldoPosterior() }" /></td>
                                                                 <td><c:out value="${recarga.getDescripcion() }" /></td>
-                                                                <td><c:out value="${recarga.getCostoMinuto()}" /></td>
-                                                                <td><c:out value="${recarga.getCostoTotal()}" /></td>
-                                                                
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>
