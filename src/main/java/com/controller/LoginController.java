@@ -60,22 +60,31 @@ public class LoginController {
 
             tel2 = dao.getTelefono(telefonoArea);
 
-            user = userDao.getUsuario(tel2.getUsuarios().getIdUsuario());
-
             if (tel2 == null) {
                 mensaje = "El usuario no existe en la base de datos";
                 System.out.println("ha ocurrido un error");
                 mav.setViewName("login/login");
 
             } else {
+                user = userDao.getUsuario(tel2.getUsuarios().getIdUsuario());
                 System.out.println("DATOS EN SERVIDOR" + tel2.getTelefonoArea() + user.getPassword());
                 System.out.println("DATOS DEL USUARIO " + telefonoArea + pass);
                 if ((telefonoArea.compareTo(tel2.getTelefonoArea()) == 0) && (pass.compareTo(user.getPassword()) == 0)) {
+                    String tipoUsuario = user.getTipoUsuario();
 
                     String userSesion = tel2.getTelefonoArea();
                     sesion.setAttribute("usuario", userSesion);
-                    mensaje = "Bienvenido";
-                    mav.setViewName("panel/panel");
+                    sesion.setAttribute("tipoUsuario", tipoUsuario);
+                    if (tipoUsuario.compareTo("Administrador") == 0) {
+                        System.out.println("REDIRIGIENDO A VISTAS ADMINISTRADOR");
+                        mensaje = "Bienvenido";
+                        mav.setViewName("viewsAdmin/panelAdmin");
+                    } else {
+                        System.out.println("REDIRIGIENDO A VISTAS USUARIOS");
+                        mensaje = "Bienvenido";
+                        mav.setViewName("panel/panel");
+                    }
+
                 } else {
                     mensaje = "LOS DATOS NO SON CORRECTOS";
                     System.out.println("ha ocurrido un error");

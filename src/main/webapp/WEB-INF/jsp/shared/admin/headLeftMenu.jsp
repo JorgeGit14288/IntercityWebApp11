@@ -262,6 +262,31 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                 <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Gestion de Usuarios<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="listUsuarios.htm">Lista de Usuarios </a>
+                        </li>
+                        <li>
+                            <a href="editUsuarios.htm">Editar Usuario</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                 </li>
+                 <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Gestion de Telefonos<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="listTelefonos.htm">Telefonos Registrados</a>
+                        </li>
+                        <li>
+                            <a href="editTelefonos.htm">Editar Telefonos</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
                 <li>
                     <a href="logout.htm"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
                 </li>

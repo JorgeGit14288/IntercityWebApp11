@@ -150,9 +150,6 @@ public class RegistrarController {
                 Usuarios usuario = this.getUserP();
                 TelefonosDao telDao = new TelefonosDao();
                 UsuariosDao userDao = new UsuariosDao();
-                //String idtel = (sesion.getAttribute("usuario")).toString();
-                //System.out.print("el telefono a buscar para ingresar el codigo es " + idtel);
-                //  telefono = telDao.getTelefono(idtel);
                 telefono.setCodigoConfirm(this.getCodigo());
 
                 if (userDao.createUsuarios(usuario)) {
@@ -169,7 +166,9 @@ public class RegistrarController {
                     if (telDao.createTelefono(telefono) == true) {
                         mensaje = null;
                         sesUser = telefono.getTelefonoArea();
-                        sesion.setAttribute("usuario", sesUser);;
+                        
+                        sesion.setAttribute("usuario", sesUser);
+                        sesion.setAttribute("tipoUsuario", usuario.getTipoUsuario());
                         mensaje = "Bienvenido";
                         this.createCodigo();
                         mav.setViewName("telefonos/confirmPhone");

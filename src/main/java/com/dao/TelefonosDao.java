@@ -66,7 +66,7 @@ public class TelefonosDao implements ITelefonosDao {
     
 
     public Telefonos getTelefono(String telefono) throws HibernateException {
-        Telefonos tel = null;
+        Telefonos tel = new Telefonos();
         try {
             iniciaOperacion();
             String queryString = "from Telefonos where telefono_area = :telefono";
@@ -77,6 +77,7 @@ public class TelefonosDao implements ITelefonosDao {
         } catch (Exception e) {
              System.out.println("No se ha encontrado el registro telefonico");
             e.printStackTrace();
+            
 
         } finally {
             sesion.close();

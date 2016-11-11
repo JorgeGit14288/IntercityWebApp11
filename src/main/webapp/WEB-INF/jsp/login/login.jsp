@@ -26,13 +26,13 @@
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-panel panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Please Sign In</h3>
+                            <center> <h2 class="panel-title">LOGIN</h2></center> 
                         </div>
                         <div class="panel-body">
                             <form role="form" method="POST" action="validarLogin.htm">
                                 <fieldset>
                                     <label for="codigoArea" >Codigo de Area</label>
-                                    <select name="codigo"  required  >
+                                    <select name="codigo"  required  ><br>
                                         <option value="1">+1 Estados Unidos </option> 
                                         <option value="1">+1 Canada</option> 
                                         <option value="1">+1 Puerto Rico</option> 
@@ -49,7 +49,7 @@
                                         <option value="507">+507 Panama</option>
                                     </select>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="telefono" name="telefono" required type="text" autofocus >
+                                        <input class="form-control" placeholder="Numero Telefonico" name="telefono" required type="text" autofocus >
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Password" name="password" type="password" value="" required>
@@ -67,7 +67,7 @@
                                 <center>
 
                                     <br>
-                                    <a href="recuperar.htm">Recuperar una cueta existente</a>
+                                    <a href="recuperar.htm">Recuperar una cuenta existente</a>
 
                                     <br>
                                     <a href="registrar.htm">Registrarse como nuevo usuario</a>
@@ -76,9 +76,9 @@
                             <div id="Error">
                                 <Br>
                                 <center>
-                                    <h3>
-                                        ${mensaje}
-                                    </h3>
+                                    <h4>
+                                        <label> ${mensaje}</label>
+                                    </h4>
 
                                 </center>
 

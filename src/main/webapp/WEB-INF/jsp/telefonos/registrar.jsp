@@ -40,12 +40,12 @@ function comprobarClave(){
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-panel panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Please Sign In</h3>
+                            <center> <h3 class="panel-title">REGISTRO DE USUARIOS</h3></center> 
                         </div>
                         <div class="panel-body">
                             <form name="f1" class="form-Registro" method="POST" action="validarRegistro.htm" >
-                                <h2 class="form-signin-heading">INGRESE SUS DATOS </h2>                
-                                <label for="codigoArea"  class="sr-only">Codigo de Area</label>
+                                <center>      <label>  <h4 class="form-signin-heading">INGRESE SUS DATOS </h4> </label>    </center>     
+                                <label for="codigoArea" >Codigo de Area</label>
                                 <select name="codigo"  required  >
                                     <option value="1">+1 Estados Unidos </option> 
                                     <option value="1">+1 Canada</option> 
@@ -67,7 +67,7 @@ function comprobarClave(){
                                 <label for="inputPassword" class="sr-only">Password</label>
                                 <input type="password" name="password"  id="inputPassword" class="form-control" placeholder="Password" required >
                                 <label for="confirmPassword" class="sr-only">Confiramar Password</label>
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Confirmar Password" required>
 
 
 
@@ -77,24 +77,23 @@ function comprobarClave(){
                                         <input type="checkbox" value="remember-me"> Remember me
                                     </label>
                                 </div>
-                                <button class="btn btn-lg btn-primary btn-block" type="submit" onClick="comprobarClave()"   >Sign in</button>
+                                <button class="btn btn-lg btn-primary btn-block" type="submit" onClick="comprobarClave()"   >Crear Cuenta</button>
                             </form>
                             <div>
                                 <center>
                                     
                                     <br>
-                                    <a href="recuperar.htm">Recuperar una cueta existente</a>
+                                    <a href="recuperar.htm">Recuperar una cuenta existente</a>
                                    
                                     <br>
-                                    <a href="registrar.htm">Registrarse como nuevo usuario</a>
                                 </center>
                             </div>
                             <div id="Error">
                                 <Br>
                                 <center>
-                                    <h3>
-                                        ${mensaje}
-                                    </h3>
+                                    <h4>
+                                        <label> ${mensaje}</label>
+                                    </h4>
 
                                 </center>
 

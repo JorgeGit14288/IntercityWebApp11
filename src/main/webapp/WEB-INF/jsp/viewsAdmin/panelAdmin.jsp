@@ -15,25 +15,25 @@
 
         <title>DashBoard</title>
 
-        <jsp:include page="../shared/headDashboard.jsp" flush="true" />
+        <jsp:include page="../shared/admin/headDashboard.jsp" flush="true" />
 
     </head>
 
     <body>
         <div id="wrapper">
             <div>
-                <jsp:include page="../shared/headLeftMenu.jsp" flush="true" />
+                <jsp:include page="../shared/admin/headLeftMenu.jsp" flush="true" />
             </div>
             <div id="page-wrapper">
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">InterCity DashBoard</h1>
+                        <h1 class="page-header">Admin Dashboard</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
 
-                <jsp:include page="../shared/rowCenter1.jsp" flush="true" />
+                <jsp:include page="../shared/admin/rowCenter1.jsp" flush="true" />
                 <div class="row">
 
                     <!-- CONTENIDO DINAMICO -->
@@ -41,7 +41,7 @@
                     <div class="col-lg-8">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
+                                <i class="fa fa-bar-chart-o fa-fw"></i> Panel de Administrador
                                 <div class="pull-right">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -157,7 +157,7 @@
 
                     <!-- CONTENIDO DINAMICO -->
                     <div class="col-lg-4">
-                        <jsp:include page="../shared/rightPanel.jsp" flush="true" />
+                        <jsp:include page="../shared/admin/rightPanel.jsp" flush="true" />
                     </div>
                 </div>
             </div>
