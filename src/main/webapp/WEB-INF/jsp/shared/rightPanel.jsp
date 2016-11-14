@@ -1,59 +1,45 @@
 
-<div class="panel panel-default">
+<div class="panel panel-yellow">
     <div class="panel-heading">
-        <i class="fa fa-bell fa-fw"></i> Notifications Panel
+        <i class="fa fa-bell fa-fw"></i> Detalles de la Cuenta
     </div>
     <!-- /.panel-heading -->
     <div class="panel-body">
         <div class="list-group">
             <a href="#" class="list-group-item">
-                <i class="fa fa-comment fa-fw"></i> New Comment
-                <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                <i class="fa fa-comment fa-fw"></i> Telefono
+                <span class="pull-right text-muted small"><em>502-41109321</em>
                 </span>
             </a>
             <a href="#" class="list-group-item">
-                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                <i class="fa fa-money fa-fw"></i> Saldo Actual
+                <span class="pull-right text-muted small"><em>$10</em>
                 </span>
             </a>
             <a href="#" class="list-group-item">
-                <i class="fa fa-envelope fa-fw"></i> Message Sent
-                <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                <i class="fa fa-envelope fa-fw"></i> Mensajes
+                <span class="pull-right text-muted small"><em>27 </em>
                 </span>
             </a>
             <a href="#" class="list-group-item">
-                <i class="fa fa-tasks fa-fw"></i> New Task
-                <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                <i class="fa fa-tasks fa-fw"></i> Historial
+                <span class="pull-right text-muted small"><em>Ver Historial</em>
+                </span>
+            </a>
+            
+            <a href="#" class="list-group-item">
+                <i class="fa fa-shopping-cart fa-fw"></i> Recargar Saldo
+                <span class="pull-right text-muted small"><em>Realizar Recarga</em>
                 </span>
             </a>
             <a href="#" class="list-group-item">
-                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                <span class="pull-right text-muted small"><em>11:32 AM</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                <span class="pull-right text-muted small"><em>11:13 AM</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                <span class="pull-right text-muted small"><em>10:57 AM</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                <span class="pull-right text-muted small"><em>9:49 AM</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-money fa-fw"></i> Payment Received
-                <span class="pull-right text-muted small"><em>Yesterday</em>
+                <i class="fa fa-money fa-fw"></i> Cuotas
+                <span class="pull-right text-muted small"><em>Lista de Precios</em>
                 </span>
             </a>
         </div>
         <!-- /.list-group -->
-        <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+       
     </div>
     <!-- /.panel-body -->
 </div>

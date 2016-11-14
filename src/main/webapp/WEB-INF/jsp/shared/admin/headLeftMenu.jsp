@@ -239,7 +239,7 @@
                     <a href="panelAdmin.htm"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History Call's<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-phone-square fa-fw"></i> History Call's<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="historialAdmin.htm">Historial de Llamadas</a>
@@ -251,7 +251,7 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Perfil de Usuario<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-user fa-fw"></i> Perfil de Usuario<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="perfilAdmin.htm">Perfil </a>
@@ -263,7 +263,7 @@
                     <!-- /.nav-second-level -->
                 </li>
                  <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Gestion de Usuarios<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-user-plus fa-fw"></i>Gestion de Usuarios<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="listUsuarios.htm">Lista de Usuarios </a>
@@ -276,7 +276,7 @@
                 </li>
                  </li>
                  <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Gestion de Telefonos<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-phone-square fa-fw"></i>Gestion de Telefonos<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="listTelefonos.htm">Telefonos Registrados</a>
