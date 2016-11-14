@@ -70,47 +70,24 @@
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <div class="col-lg-6">
-                                    <form name="formBusqueda" method="POST" action="listUsuarios.htm" role="form">
-                                        <div class="form-group">
-                                            <label>Text Input</label>
-                                            <input class="form-control">
-                                            <p class="help-block">Example block-level help text here.</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Text Input with Placeholder</label>
-                                            <input class="form-control" placeholder="Enter text">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Static Control</label>
-                                            <p class="form-control-static">email@example.com</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>File input</label>
-                                            <input type="file">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Text area</label>
-                                            <textarea class="form-control" rows="3"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Checkboxes</label>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox 1
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox 2
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox 3
-                                                </label>
-                                            </div>
-                                        </div>
+                                <div class="col-lg-4">
+                                    <form role="form" method="POST" action="buscarUsuarios.htm">
+                                        <fieldset>
+                                            <label for="parametro" >Busqueda por</label>
+                                            <select name="parametro"  required  ><br>
+                                                <option value="idUsuario">idUsuario</option> 
+                                                <option value="nombres">Nombres</option> 
+                                                <option value="apellidos">Apellidos</option> 
+                                                <option value="idAccount">IdAccount</option> 
+                                                <option value="telefono">Telefono</option>
+                                            </select>
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Datos a buscar" name="datoBuscar" required type="text" autofocus >
+                                            </div>                                           
+                                            <!-- Change this to a button or input when using this as a form -->
+                                            <button class="btn btn-lg btn-primary btn-block" type="submit">Buscar</button>
+                                        </fieldset>
+                                    </form>
                                 </div>
                                 <!-- /.panel-body -->
                             </div>

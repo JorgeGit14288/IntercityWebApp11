@@ -77,7 +77,7 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 
-                                <form class="form-Registro" method="POST" action="setEditarPerfil.htm" >
+                                <form class="form-Registro" method="POST" action="validarEditarPerfil.htm" >
                                     <Center> <h3 class="form-signin-heading">Ingrese sus datos </h3> </Center>
                                                 <div class="form-group">
                                                 <label for="idUsuario" >Id Uusario</label>

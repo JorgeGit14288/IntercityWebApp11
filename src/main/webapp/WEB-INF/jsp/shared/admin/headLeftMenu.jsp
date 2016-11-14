@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">InterCity WebApp ${sessionScope.usuario} ${sessionScope.tipoUsuario}    </a>
+        <a class="navbar-brand" href="panelAdmin.htm">InterCity WebApp ${sessionScope.usuario} ${sessionScope.tipoUsuario}    </a>
     </div>
     <!-- /.navbar-header -->
 
@@ -236,16 +236,16 @@
                     <!-- /input-group -->
                 </li>
                 <li>
-                    <a href="panel.htm"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    <a href="panelAdmin.htm"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History Call's<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="historial.htm">Historial de Llamadas</a>
+                            <a href="historialAdmin.htm">Historial de Llamadas</a>
                         </li>
                         <li>
-                            <a href="recargas.htm">Hisorial de Recargas</a>
+                            <a href="recargasAdmin.htm">Hisorial de Recargas</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -254,10 +254,10 @@
                     <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Perfil de Usuario<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="perfil.htm">Perfil </a>
+                            <a href="perfilAdmin.htm">Perfil </a>
                         </li>
                         <li>
-                            <a href="registrarUsuarios.htm">Editar Perfil</a>
+                            <a href="editarPerfil.htm">Editar Perfil</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

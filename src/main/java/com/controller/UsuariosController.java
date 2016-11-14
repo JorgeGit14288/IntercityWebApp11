@@ -7,7 +7,6 @@ package com.controller;
 
 import com.dao.TelefonosDao;
 import com.dao.UsuariosDao;
-import com.jsonEntitys.Account;
 import com.jsonEntitys.AccountLight;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -16,14 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.entitys.Telefonos;
 import com.entitys.Usuarios;
-import com.util.Cifrar;
 import com.util.httpAccount;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  *

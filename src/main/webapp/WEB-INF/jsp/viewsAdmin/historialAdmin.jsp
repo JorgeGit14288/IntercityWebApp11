@@ -15,7 +15,7 @@
 
         <title>InterCity Dashboard</title>
 
-        <jsp:include page="../shared/admin/headDashboard.jsp" flush="true" />
+        <jsp:include page="../shared/headDashboard.jsp" flush="true" />
 
     </head>
 
@@ -72,69 +72,37 @@
                     <div class="col-lg-8">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <i class=""></i> <center><label>EDITAR PERFIL DE USUARIO</label></center>
+                                <i class=""></i> <center><label>FORMULARIO DE BUSQUEDA</label></center>
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                
-                                <form class="form-Registro" method="POST" action="setEditarPerfil.htm" >
-                                    <Center> <h3 class="form-signin-heading">Ingrese sus datos </h3> </Center>
-                                                <div class="form-group">
-                                                <label for="idUsuario" >Id Uusario</label>
-                                                <input type="text" readonly name="idUsuario" value ="${user.getIdUsuario()}" id="idUsuario" /> 
-                                                </div>
-                                                <div class="form-group">
-                                                <label for="Telefono" >Telefonos:</label><br>
-                                                </div>
+                                <center><label>Ingrese los parametros a buscar en el historial</label></center> 
+                                <form name="form1" method="POST" action="getHistorialAdmin.htm" role="form">
 
-                                                <c:forEach items="${listTel}" var="tel">
-                                                    <input type="text"  name="telefono" value ="<c:out value="${tel.getTelefonoArea()}" />" id="telefonos" /> 
-                                                    
-                                                </c:forEach>
-                                                 <div class="form-group">
-                                                <label for="nombres" >Nombres</label>
-                                                <input type="text"  name="nombres"  id="nombre" required placeholder="first name" /> <br>
-                                                </div>
-                                                    <div class="form-group">
-                                                <label for="apellidos" >Apellidos</label>
-                                                <input type="text"  name="apellidos"  id="apellidos" required placeholder="last name" /><br>
-                                                </div>
-                                                <div class="form-group">
-                                                <label for="direccion" >Direccion</label>
-                                                <input type="text"  name="direccion"  id="direccion" required placeholder="address" /><br>
-                                                </div>
-                                                <div class="form-group">
-                                                <label for="ciudad" >Ciudad</label>
-                                                <input type="text"  name="ciudad"  id="city" required placeholder="city" /><br>
-                                                </div>
-                                                 <div class="form-group">
-                                                <label for="codigo" >Codigo Postal</label>
-                                                <input type="num"  name="codigoPostal"  id="nombre" required placeholder="postal code" /><br>
-                                                </div>
-                                                <div class="form-group">
-                                                <label for="email" >E-mail</label>
-                                                <input type="email" name="email"  id="nombre" required placeholder="example@example.com" /><br>
-                                                </div>
-                                                <div class="form-group">
-                                                <label for="languaje"  >Lenguaje para su operador</label>
-                                                <select name="languaje"  required  >
-                                                    <option value="Es">Español</option> 
-                                                    <option value="En">Ingles</option> 
-                                                </select><br>
-                                                </div>
-                                                <div class="form-group">
-                                                <label for="notify Email" >Notificar a e-mail</label>
-                                                <input type="checkbox"  name="notifyEmail"  /><br>
-                                                </div>
-                                                <div class="form-group">
-                                                <label for="flag" >Notificar Flag</label>
-                                                <input type="checkbox"  name="notifyFlag"  /><br>
-                                                </div>
-                                                <div class="form-group">
-                                                <button  type="submit"class="btn btn-default" >Confirmar</button>
-                                                <button type="reset" class="btn btn-default">Reiniciar form</button>
-                                                </div>
-                                            </form>
+                                    <div class="form-group">
+                                        <label>Paginas</label>
+                                        <input type="number" name="page" class="form-control" placeholder="page" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Maximo de llamadas</label>
+                                        <input type="number" name="max" class="form-control" placeholder="max" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Fecha de inicio</label>
+                                        <input type="date" name="startDate" class="form-control" placeholder="startDate" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Fecha de fin</label>
+                                        <input type="date" name="endDate" class="form-control" placeholder="endDate" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Numero de destino</label>
+                                        <input type="number" name="destination" class="form-control" placeholder="code and number">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-default">Ver Historial</button>
+                                    <button type="reset" class="btn btn-default">Reiniciar form</button>
+                                </form>
 
                                 <div id="Error">
                                     <Br>
@@ -182,10 +150,31 @@
                                             <form action="editar.htm" method="GET" name="formLista" >
                                                 <table class="table table-bordered table-hover table-striped">
                                                     <thead>
-                                                      
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Fecha=Hora</th>
+                                                            <th>Destino</th>
+                                                            <th>Pais-Operador</th>
+                                                            <th>Segundos</th>
+                                                            <th>Minutos</th>
+                                                            <th>Costo-minuto</th>
+                                                            <th>Costo-Total</th>
+                                                        </tr>
                                                     </thead>
                                                     <tbody>
-                                                    
+                                                        <c:forEach items="${llamadas}" var="llamada">
+                                                            <tr>
+                                                                <td><c:out value="${llamada.getNo()}" /></td>
+                                                                <td><c:out value="${llamada.getInicioLLamada()}" /></td>
+                                                                <td><c:out value="${llamada.getNumero()}" /></td>
+                                                                <td><c:out value="${llamada.getPais_operador()}" /></td>
+                                                                <td><c:out value="${llamada.getDuracionSegundos() }" /></td>
+                                                                <td><c:out value="${llamada.getDuracionMinutos() }" /></td>
+                                                                <td><c:out value="${llamada.getCostoMinuto()}" /></td>
+                                                                <td><c:out value="${llamada.getCostoTotal()}" /></td>
+                                                                
+                                                            </tr>
+                                                        </c:forEach>
                                                     </tbody>
                                                 </table>
                                             </form>
