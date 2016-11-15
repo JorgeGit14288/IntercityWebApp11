@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controller;
+package com.controller.admin;
 
 import com.dao.TelefonosDao;
 import com.dao.UsuariosDao;
@@ -67,6 +67,13 @@ public class AdminController {
 
         } else {
             if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+
+                UsuariosDao userDao = new UsuariosDao();
+                List<Usuarios> listUser = userDao.getAllUsuarios();
+               mav.addObject("listaUsuarios", listUser);
+                //sesion.setAttribute("listaUsuarios", listUser);
+
+    
                 mav.setViewName("viewsAdmin/listUsuarios");
             } else {
                 mav.setViewName("panel/panel");
@@ -176,17 +183,6 @@ public class AdminController {
 
         System.out.println("Pase por el controlador");
         return telefonosList;
-    }
-
-    //ATRIBUTOS PARA CONSULTAR
-    @ModelAttribute("listUser")
-    public List<Usuarios> listaUsuarios() {
-
-        //Data referencing for web framework checkboxes
-        ModelAndView mav = new ModelAndView();
-        UsuariosDao userDao = new UsuariosDao();
-        List<Usuarios> listUser = userDao.getAllUsuarios();
-        return listUser;
     }
 
     @RequestMapping("perfilAdmin.htm")
@@ -371,11 +367,7 @@ public class AdminController {
         return tel;
     }
 
-    
-    
-    
     /// historial del admin
-    
     @RequestMapping("historialAdmin.htm")
     public ModelAndView Historial(HttpServletRequest request) {
         sesion = request.getSession();
@@ -420,8 +412,8 @@ public class AdminController {
             String startDate = request.getParameter("startDate");
             String endDate = request.getParameter("endDate");
             String destination = request.getParameter("destination");
-            
-            System.out.println(idAccount +" "+page+" "+max+" "+startDate+" "+endDate+" "+destination+" ");
+
+            System.out.println(idAccount + " " + page + " " + max + " " + startDate + " " + endDate + " " + destination + " ");
 
             httpHistorial historial = new httpHistorial();
 
@@ -438,6 +430,7 @@ public class AdminController {
 
         return mav;
     }
+
     @RequestMapping("recargasAdmin.htm")
     public ModelAndView Recargas(HttpServletRequest request) {
         sesion = request.getSession();
@@ -481,9 +474,8 @@ public class AdminController {
             String max = request.getParameter("max");
             String startDate = request.getParameter("startDate");
             String endDate = request.getParameter("endDate");
-           
-            
-            System.out.println(idAccount +"Pagina "+page+" Maximo  "+max+" fecha inicial "+startDate+" fecha final "+endDate);
+
+            System.out.println(idAccount + "Pagina " + page + " Maximo  " + max + " fecha inicial " + startDate + " fecha final " + endDate);
 
             httpRecargas recargaHelper = new httpRecargas();
 

@@ -1,8 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -104,17 +103,38 @@
                                         <!-- /.panel-heading -->
                                         <div class="panel-body">
                                             <div class="table-responsive">  
-                                                <display:table name="listaUsuarios" id="usuarios" pagesize="1" >
-                                                    <display:column  title="idUsuario" property="idUsuario"  style="width:80px" />  
-                                                    <display:column  title="Nombres" property="nombres" sortable="true" sortName="nombres" style="width:100px" />  
-                                                    <display:column  title="Apellidos" property="apellidos" style="width:130px"/>  
-                                                    <display:column  title="Pais" property="pais"style="width:120px"/>  
-                                                    <display:column  title="Email" property="email"style="width:220px"/>  
-                                                    <display:column  title="Status" property="status" sortable="true" sortName="status"style="width:100px"/>  
-                                                    <display:column  title="Tipo" property="tipoUsuario" sortable="true" sortName="tipoUsuario" style="width:100px" />   
-                                                    <display:column  title="Account" property="idAccount" sortable="true" sortName="idAccount" style="width:100px" />
-                                                </display:table> 
-                                                
+                                                <table width="100%" class="table table-bordered table-hover table-striped" id="dataTables-example">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Nombres</th>
+                                                            <th>Apellidos</th>
+                                                            <th>Pais</th>
+                                                            <th>E=mail</th>
+                                                            <th>Status</th>
+                                                            <th>tipo</th>
+                                                            <th>Account</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <c:forEach items="${listaUsuarios}" var="usuario">
+                                                            <tr>
+                                                                <td><c:out value="${usuario.getIdUsuario()}" /></td>
+
+                                                                <td><c:out value="${usuario.getNombres()}" /></td>
+                                                                <td><c:out value="${usuario.getApellidos()}" /></td>
+                                                                <td><c:out value="${usuario.getEmail()}" /></td>
+                                                                <td><c:out value="${usuario.getStatus()}" /></td>
+                                                                <td><c:out value="${usuario.getTipoUsuario() }" /></td>
+                                                                <td><c:out value="${usuario.getIdAccount() }" /></td>
+
+
+                                                                <td><a href="editarUsuarios.htm?idUsuario=${listUser.getIdUsuario()}">editar</a></td>         
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                             <!-- /.table-responsive -->
                                             <div class="well">

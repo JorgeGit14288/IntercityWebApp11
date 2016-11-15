@@ -56,7 +56,8 @@
     <bean name="telefonosController" class="com.controller.TelefonosController"/>
     <bean name="recuperarController" class="com.controller.RecuperarController"/>
     <bean name="historialController" class="com.controller.HistorialController"/>
-    <bean name="adminController" class="com.controller.AdminController"/>
+    <bean name="adminController" class="com.controller.admin.AdminController"/>
+   
     
     
     <bean name="indexController"
