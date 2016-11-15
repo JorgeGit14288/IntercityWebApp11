@@ -1,7 +1,7 @@
 
-<div class="panel panel-default">
+<div class="panel panel-yellow">
     <div class="panel-heading">
-        <i class="fa fa-bell fa-fw"></i> Panel de Información
+        <i class="fa fa-bell fa-fw"></i> Detalles de la Cuenta
     </div>
     <!-- /.panel-heading -->
     <div class="panel-body">

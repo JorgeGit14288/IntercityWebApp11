@@ -47,7 +47,7 @@
                     <!-- /input-group -->
                 </li>
                 <li>
-                    <a href="panel.htm"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    <a href="panel.htm"><i class="fa fa-dashboard fa-fw"></i> User Dashboard </a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-phone-square fa-fw"></i> History Call's<span class="fa arrow"></span></a>
