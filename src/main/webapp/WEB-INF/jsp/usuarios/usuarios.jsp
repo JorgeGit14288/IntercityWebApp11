@@ -1,162 +1,111 @@
-<%-- 
-    Document   : panel
-    Created on : 24-oct-2016, 18:07:48
-    Author     : jorge
---%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="icon" href="../../favicon.ico">
 
-        <title>InterCity Dashboard</p> ${sessionScope.usuario}</p></title>
+        <title>DashBoard</title>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <jsp:include page="../shared/admin/headDashboard.jsp" flush="true" />
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    </head>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-<!-- Custom styles for this template -->
-<link href="dashboard.css" rel="stylesheet">
-
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-
-</head>
-
-<body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">InterCity Dashboard </a>
-                <a class="navbar-brand" href="#">${sessionScope.usuario}</a>
+    <body>
+        <div id="wrapper">
+            <div>
+                <jsp:include page="../shared/admin/headLeftMenu.jsp" flush="true" />
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="panel.htm">Dashboard</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="perfil.htm">Profile</a></li>
-                    <li><a href="#">Help</a></li>
-                    <li><a href="logout.htm">LogOut</a></li>
+            <div id="page-wrapper">
 
-                </ul>
-                <form class="navbar-form navbar-right">
-                    <input type="text" class="form-control" placeholder="Search...">
-                </form>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Admin Dashboard</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+
+
+                <div class="row">
+
+                    <!-- CONTENIDO DINAMICO -->
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                DataTables Advanced Tables
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            <th>Pais</th>
+                                            <th>Email</th>
+                                            <th>Status</th>
+                                            <th>Tipo</th>
+                                            <th>Account</th>
+                                            <th>Acciones</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${listaUsuarios}" var="usuario">
+                                            <tr>
+                                                <td><c:out value="${usuario.getIdUsuario()}" /></td>
+                                                <td><c:out value="${usuario.getNombres()}" /></td>
+                                                <td><c:out value="${usuario.getApellidos()}" /></td>
+                                                <td><c:out value="${usuario.getPais()}" /></td>
+                                                <td><c:out value="${usuario.getEmail()}" /></td>
+                                                <td><c:out value="${usuario.getStatus()}" /></td>
+                                                <td><c:out value="${usuario.getTipoUsuario() }" /></td>
+                                                <td><c:out value="${usuario.getIdAccount() }" /></td>
+                                                <td><a href="editarUsuarios.htm?idUsuario=${usuario.getIdUsuario()}">editar</a></td>         
+                                            </tr>
+                                        </c:forEach>
+
+                                    </tbody>
+                                </table>
+                                <!-- /.table-responsive -->
+                                <!-- /.table-responsive -->
+                                <div class="well">
+                                    <h4>DataTables Usage Information</h4>
+                                    <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.</p>
+                                    <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+
+                    </div>
+                    <!-- /.col-lg-8 -->
+
+                    <!-- CONTENIDO DINAMICO -->
+
+                </div>
             </div>
-        </div>
-    </nav>
+            <script>
+                $(document).ready(function () {
+                    $('#dataTables-example').DataTable({
+                        responsive: true
+                    });
+                });
+            </script>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
-                <ul class="nav nav-sidebar">
-
-                    <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-                    <li><a href=></a></li>
-                    <li><a href="registrarUsuarios.htm">Llenar Perfil</a></li>
-                    <li><a href="editarUsuarios.htm">Editar Usuario</a></li>
-                    <li><a href="usuarios.htm">Consultar Usuario</a></li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                    <li><a href="logout.htm">LogOut</a></li>
-                </ul>
-            </div>
 
         </div>
 
-    </div>
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header">Dashboard</h1>    
-        <div id="content">
-            <form action="editar.htm" method="GET" name="formLista" >
-                <center>
-                    <table border="2">
-                        <tr>
-                            <td>Id Usuario</td>
-                            <td>Password</td>
-                            <td>Nombres</td>
-                            <td>Apellidos</td>
-                            <td>Pais</td>
-                            <td>Email</td>
-                            <td>Status</td>
-                        <c:forEach items="${listUser}" var="listUser">
-                            <tr>
-                                <td><c:out value="${listUser.getIdUsuario()}" /></td>
-                            <td><c:out value="${listUser.getPassword() }" /></td>
-                            <td><c:out value="${listUser.getNombres()}" /></td>
-                            <td><c:out value="${listUser.getApellidos()}" /></td>
-                            <td><c:out value="${listUser.getPais()}" /></td>
-                            <td><c:out value="${listUser.getEmail()}" /></td>
-                            <td><c:out value="${listUser.getStatus()}" /></td>
+    </body>
 
-                            <td><a href="editarUsuarios.htm?idUsuario=${listUser.getIdUsuario()}">editar</a></td>         
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </center>
-
-            </form>
-
-        </div>
-
-        <div id="Error">
-            <Br>
-            <center>
-                <h3>
-                    ${mensaje}
-                </h3>
-
-            </center>
-
-        </div>
-    </div>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../../assets/js/vendor/holder.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-</body>
 </html>

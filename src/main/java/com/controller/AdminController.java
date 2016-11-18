@@ -96,24 +96,7 @@ public class AdminController {
         return mav;
     }
 
-    @RequestMapping(value = "editUsuarios.htm", method = RequestMethod.POST)
-    public ModelAndView getEditUsuarios(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView();
-        sesion = request.getSession();
-        if (sesion.getAttribute("usuario") == null) {
-            mensaje = "Ingrese sus datos para poder ingresar al sistema";
-            mav.addObject("mensaje", mensaje);
-            mav.setViewName("login/login");
-
-        } else {
-            if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
-                mav.setViewName("viewsAdmin/editUsuarios");
-            } else {
-                mav.setViewName("panel/panel");
-            }
-        }
-        return mav;
-    }
+    
 
     @RequestMapping(value = "editTelefonos.htm", method = RequestMethod.POST)
     public ModelAndView getEditTelefonos(HttpServletRequest request) {

@@ -102,40 +102,38 @@
                                         </div>
                                         <!-- /.panel-heading -->
                                         <div class="panel-body">
-                                            <div class="table-responsive">  
-                                                <table width="100%" class="table table-bordered table-hover table-striped" id="dataTables-example">
-                                                    <thead>
+                                            <table width="100%" class="table table-bordered table-hover table-striped" id="dataTables-example">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Nombres</th>
+                                                        <th>Apellidos</th>
+                                                        <th>Pais</th>
+                                                        <th>Email</th>
+                                                        <th>Status</th>
+                                                        <th>tipo</th>
+                                                        <th>Account</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="${listaUsuarios}" var="usuario">
                                                         <tr>
-                                                            <th>Id</th>
-                                                            <th>Nombres</th>
-                                                            <th>Apellidos</th>
-                                                            <th>Pais</th>
-                                                            <th>E=mail</th>
-                                                            <th>Status</th>
-                                                            <th>tipo</th>
-                                                            <th>Account</th>
+                                                            <td><c:out value="${usuario.getIdUsuario()}" /></td>
+                                                            <td><c:out value="${usuario.getNombres()}" /></td>
+                                                            <td><c:out value="${usuario.getApellidos()}" /></td>
+                                                            <td><c:out value="${usuario.getPais()}" /></td>
+                                                            <td><c:out value="${usuario.getEmail()}" /></td>
+                                                            <td><c:out value="${usuario.getStatus()}" /></td>
+                                                            <td><c:out value="${usuario.getTipoUsuario() }" /></td>
+                                                            <td><c:out value="${usuario.getIdAccount() }" /></td>
 
+
+                                                            <td><a href="editarUsuarios.htm?idUsuario=${listUser.getIdUsuario()}">editar</a></td>         
                                                         </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <c:forEach items="${listaUsuarios}" var="usuario">
-                                                            <tr>
-                                                                <td><c:out value="${usuario.getIdUsuario()}" /></td>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
 
-                                                                <td><c:out value="${usuario.getNombres()}" /></td>
-                                                                <td><c:out value="${usuario.getApellidos()}" /></td>
-                                                                <td><c:out value="${usuario.getEmail()}" /></td>
-                                                                <td><c:out value="${usuario.getStatus()}" /></td>
-                                                                <td><c:out value="${usuario.getTipoUsuario() }" /></td>
-                                                                <td><c:out value="${usuario.getIdAccount() }" /></td>
-
-
-                                                                <td><a href="editarUsuarios.htm?idUsuario=${listUser.getIdUsuario()}">editar</a></td>         
-                                                            </tr>
-                                                        </c:forEach>
-                                                    </tbody>
-                                                </table>
-                                            </div>
                                             <!-- /.table-responsive -->
                                             <div class="well">
                                                 <h4>DataTables Usage Information</h4>

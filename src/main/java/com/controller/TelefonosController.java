@@ -6,12 +6,14 @@
 package com.controller;
 
 import com.dao.TelefonosDao;
+import com.dao.UsuariosDao;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.entitys.Telefonos;
+import com.entitys.Usuarios;
 import com.util.Cifrar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -31,7 +33,7 @@ public class TelefonosController {
 
     //creando un metodo para guaradar el login
     // metodo que devuele la vista index de los usuarios, en donde se muestran los usuarios registrados
-    @RequestMapping("indexu.htm")
+    @RequestMapping("telefonos.htm")
     public ModelAndView getUsuarios(HttpServletRequest request) {
         sesion = request.getSession();
         ModelAndView mav = new ModelAndView();
@@ -43,9 +45,16 @@ public class TelefonosController {
                 mav.addObject("mensaje", mensaje);
                 mav.setViewName("login/login");
             } else {
-                mensaje = null;
-                mav.setViewName("telefonos/indexu");
-                mav.addObject("mensaje", mensaje);
+
+                if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                   TelefonosDao telDao = new TelefonosDao();
+                    List<Telefonos> listTelefonos = telDao.getAllTelefonos();
+                    mav.addObject("listaTelefonos", listTelefonos);
+                    mav.setViewName("telefonos/telefonos");
+                } else {
+                    mav.setViewName("panel/panel");
+                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,9 +85,9 @@ public class TelefonosController {
         System.out.println("Buscando los telefonos de " + uSesion);
         ModelAndView mav = new ModelAndView();
         TelefonosDao userHelper = new TelefonosDao();
-        
+
         List<Telefonos> telefonosList = userHelper.getAllTelUser(uSesion);
-        
+
         System.out.println("Pase por el controlador");
         return telefonosList;
     }

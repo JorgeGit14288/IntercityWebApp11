@@ -35,8 +35,54 @@ public class UsuariosController {
 
     HttpSession sesion;
     String sesionUser;
+    String mensaje;
+    
+    @RequestMapping("usuarios.htm")
+    public ModelAndView getListUsuarios(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        sesion = request.getSession();
+        if (sesion.getAttribute("usuario") == null) {
+            mensaje = "Ingrese sus datos para poder ingresar al sistema";
+            mav.addObject("mensaje", mensaje);
+            mav.setViewName("login/login");
 
+        } else {
+            if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+
+                UsuariosDao userDao = new UsuariosDao();
+                List<Usuarios> listUser = userDao.getAllUsuarios();
+                mav.addObject("listaUsuarios", listUser);
+                //sesion.setAttribute("listaUsuarios", listUser);
+                mav.setViewName("usuarios/usuarios");
+            } else {
+                mav.setViewName("panel/panel");
+            }
+        }
+        return mav;
+    }
     
-    //ATRIBUTOS PARA CONSULTAR
-    
+    @RequestMapping(value = "editarUsuarios.htm", method = RequestMethod.GET)
+    public ModelAndView getEditUsuarios(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        sesion = request.getSession();
+        if (sesion.getAttribute("usuario") == null) {
+            mensaje = "Ingrese sus datos para poder ingresar al sistema";
+            mav.addObject("mensaje", mensaje);
+            mav.setViewName("login/login");
+
+        } else {
+            String userId = request.getParameter("idUsuario");
+            UsuariosDao userDao= new UsuariosDao();
+            Usuarios usuario = userDao.getUsuario(userId);
+            
+            if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                mav.addObject("usuario", usuario);
+                mav.setViewName("usuarios/editarUsuarios");
+            } else {
+                mav.addObject("usuario", usuario);
+                mav.setViewName("panel/editarPerfil");
+            }
+        }
+        return mav;
+    }
 }

@@ -77,10 +77,10 @@
                     <a href="#"><i class="fa fa-user fa-fw"></i>Gestion de Usuarios<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="listUsuarios.htm">Usuarios Registrados </a>
+                            <a href="usuarios.htm">Usuarios Registrados </a>
                         </li>
                         <li>
-                            <a href="editUsuarios.htm">Editar Datos</a>
+                            <a href="editarUsuarios.htm">Editar Datos</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -89,10 +89,10 @@
                     <a href="#"><i class="fa fa-phone fa-fw"></i>Gestion de Numeros Tel.<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="listTelefonos.htm">Telefonos Registrados</a>
+                            <a href="telefonos.htm">Telefonos Registrados</a>
                         </li>
                         <li>
-                            <a href="editTelefonos.htm">Editar Datos</a>
+                            <a href="editarTelefonos.htm">Editar Datos</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
