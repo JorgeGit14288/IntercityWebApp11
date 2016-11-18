@@ -59,6 +59,7 @@
                                         <c:forEach items="${listaTelefonos}" var="telefono">
                                             <tr>
                                                 <td><c:out value="${telefono.getTelefonoArea()}" /></td>
+                                                <td><c:out value="${telefono.getUsuarios().getIdUsuario()}" /></td>
                                                 <td><c:out value="${telefono.getCodigoConfirm()}" /></td>
                                                 
                                                 <td><c:out value="${telefono.getStatus()}" /></td>
