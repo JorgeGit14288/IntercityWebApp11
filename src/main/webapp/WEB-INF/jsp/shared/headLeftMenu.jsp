@@ -68,7 +68,7 @@
                             <a href="perfil.htm">Perfil </a>
                         </li>
                         <li>
-                            <a href="registrarUsuarios.htm">Editar Perfil</a>
+                            <a href="editarPerfil.htm">Editar Perfil</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

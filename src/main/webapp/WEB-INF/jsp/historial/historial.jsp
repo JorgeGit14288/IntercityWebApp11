@@ -33,137 +33,112 @@
                 </div>
                 <div class="row">
                     <!-- CONTENIDO DINAMICO -->
-                    <div class="col-lg-8">
-                        <div class="col-lg-8">
+                    <div class="col-lg-12">
+                        <div class="col-lg-12">
                             <div class="panel panel-green">
                                 <div class="panel-heading">
                                     <i class=""></i> <center><label>FORMULARIO DE BUSQUEDA</label></center>
                                 </div>
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
-                                    <center><label>Ingrese los parametros a buscar en el historial</label></center> 
-                                    <form name="form1" method="POST" action="getHistorial.htm" role="form">
-                                        <div class="form-group">
-                                            <label>Fecha de inicio</label>
-                                            <input type="date" name="startDate" placeholder="startDate" required>
+                                    <div class="col-lg-8">
+                                        <form name="form1" method="GET" action="getHistorial.htm" role="form">
+                                            <div class="col-xs-4">
+                                                <label>Fecha de inicio</label>
+                                                <input type="date" min="2016-10-01" name="startDate" value="${startDate}" placeholder="startDate" required>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <label>Fecha de fin</label>
+                                                <input type="date" name="endDate" min="2016-10-02" value="${endDate}"  placeholder="endDate" required>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <label>Numero de destino</label>
+                                                <input type="number" name="destination" min="1" value="${destination}" class="form-control" placeholder="code and number">
+                                            </div> 
+                                            <div class="col-xs-4">
+
+                                                <select name="max">
+                                                    <option selected value="${max}">Mostrar ${max}</option>
+
+                                                    <option value="1">1 llamada</option> 
+                                                    <option value="5">5 llamadas</option> 
+                                                    <option value="10">10 llamadas</option> 
+                                                    <option value="15">15 llamadas</option> 
+                                                    <option value="25">25 llamadas</option> 
+                                                    <option value="50">50 llamadas</option> 
+                                                    <option value="100">100 llamadas</option> 
+
+                                                </select>
+                                            </div>
+
+                                            <div class="col-xs-3">
+                                                <label><br></label>
+                                                <button type="submit" class="btn btn-success">Ver Historial</button>
+
+                                            </div> 
+                                    </div>
+
+
+                                    <div class="table-striped">
+                                        <table class="table table-bordered table-hover table-striped">
+                                            <thead>
+
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Fecha/Hora</th>
+                                                    <th>Destino</th>
+                                                    <th>Pais-Operador</th>
+                                                    
+                                                    <th>Minutos</th>
+                                                    <th>Costo-minuto</th>
+                                                    <th>Costo-Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach items="${llamadas}" var="llamada">
+                                                    <tr class="odd gradeX">
+                                                        <td><c:out value="${llamada.getNo()}" /></td>
+                                                        <td><c:out value="${llamada.getInicioLLamada()}" /></td>
+                                                        <td><c:out value="${llamada.getNumero()}" /></td>
+                                                        <td><c:out value="${llamada.getPais_operador()}" /></td>
+                                                        <td><c:out value="${llamada.getDuracionMinutos() }" /></td>
+                                                        <td><c:out value="${llamada.getCostoMinuto()}" /></td>
+                                                        <td><c:out value="${llamada.getCostoTotal()}" /></td>
+
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                        <ul class="pager">
+
+                                            <li class="previous"><a href="getHistorial.htm?page=${pageprevius}&max=${max}&startDate=${startDate}&endDate=${endDate}&destination=${destination}">&larr; Anterior ${pageprevius}</a></li>
+                                            <li class="list-group-item-text">pagina ${page}</li>
+                                            <li class="next"><a href="getHistorial.htm?page=${pagenext}&max=${max}&startDate=${startDate}&endDate=${endDate}&destination=${destination}"">Siguiente ${pagenext} &rarr;</a></li>
+                                        </ul>
+                                        </form>
+                                        <div >
+                                            <div id="Error">
+                                                <Br>
+                                                <center>
+
+                                                    <h5>
+                                                        ${mensaje}
+                                                    </h5>
+
+                                                </center>
+
+                                            </div>
+
                                         </div>
-                                        <div class="form-group">
-                                            <label>Fecha de fin</label>
-                                            <input type="date" name="endDate"  placeholder="endDate" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Numero de destino</label>
-                                            <input type="number" name="destination" class="form-control" placeholder="code and number">
-                                        </div>
-                                        <button type="submit" class="btn btn-success">Ver Historial</button>
-                                        <button type="reset" class="btn btn-danger">Reiniciar form</button>
-                                    </form>
-
-                                    <div >
-                                        <div id="Error">
-                                            <Br>
-                                            <center>
-
-                                                <h5>
-                                                    ${mensaje}
-                                                </h5>
-
-                                            </center>
-
-                                        </div>
-
                                     </div>
                                 </div>
                                 <!-- /.panel-body -->
                             </div>
                         </div>
                         <!-- /.panel -->
-                        <div class="col-lg-12">
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    <i class=""></i> <center><label>RESULTADO DE LA BUSQUEDA</label></center>
-                                    <div class="pull-right">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                                Actions
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu pull-right" role="menu">
-                                                <li><a href="#">Action</a>
-                                                </li>
-                                                <li><a href="#">Another action</a>
-                                                </li>
-                                                <li><a href="#">Something else here</a>
-                                                </li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="table-responsive">
-                                                <form action="editar.htm" method="GET" name="formLista" >
-                                                    <table class="table table-bordered table-hover table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>No</th>
-                                                                <th>Fecha=Hora</th>
-                                                                <th>Destino</th>
-                                                                <th>Pais-Operador</th>
-                                                                <th>Segundos</th>
-                                                                <th>Minutos</th>
-                                                                <th>Costo-minuto</th>
-                                                                <th>Costo-Total</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <c:forEach items="${llamadas}" var="llamada">
-                                                                <tr>
-                                                                    <td><c:out value="${llamada.getNo()}" /></td>
-                                                                    <td><c:out value="${llamada.getInicioLLamada()}" /></td>
-                                                                    <td><c:out value="${llamada.getNumero()}" /></td>
-                                                                    <td><c:out value="${llamada.getPais_operador()}" /></td>
-                                                                    <td><c:out value="${llamada.getDuracionSegundos() }" /></td>
-                                                                    <td><c:out value="${llamada.getDuracionMinutos() }" /></td>
-                                                                    <td><c:out value="${llamada.getCostoMinuto()}" /></td>
-                                                                    <td><c:out value="${llamada.getCostoTotal()}" /></td>
 
-                                                                </tr>
-                                                            </c:forEach>
-                                                        </tbody>
-                                                    </table>
-                                                </form>
-                                            </div>
-                                            <!-- /.table-responsive -->
-                                        </div>
-
-                                    </div>
-                                    <!-- /.row -->
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-lg-4">
 
-                        <jsp:include page="../shared/rightPanel.jsp" flush="true" />
-                        <div class="panel panel-info">
-                            <div class="panel-heading">
-                                <i class="fa fa-info-circle fa-fw"></i> Informacion
-                            </div>
-                            <div class="panel-body">
-                                <p>Bienvenido a InterCity, en esta aplicacion web usted podra gestionar su cuenta de usuario </p>
-                            </div>
-                            <div class="panel-footer">
-                                InterCity WebApp
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -104,7 +104,11 @@
                                         <!-- /.panel-heading -->
                                         <div class="panel-body">
                                             <div class="table-responsive">  
-                                                <display:table name="listaUsuarios" id="usuarios" pagesize="1" >
+                                                <display:table name="listaUsuarios" id="usuarios" pagesize="10" requestURI="listaUsuarios.htm" >
+                                                    <display:setProperty name="export.excel.filename" value="ListadoClientes.xls" />
+                                                    <display:setProperty name="export.xml.filename" value="ListadoClientes.xml" />
+                                                    <display:setProperty name="export.csv.filename" value="ListadoClientes.csv" />
+                                                    <display:caption title="Listado de Usuarios"/>
                                                     <display:column  title="idUsuario" property="idUsuario"  style="width:80px" />  
                                                     <display:column  title="Nombres" property="nombres" sortable="true" sortName="nombres" style="width:100px" />  
                                                     <display:column  title="Apellidos" property="apellidos" style="width:130px"/>  
@@ -112,9 +116,11 @@
                                                     <display:column  title="Email" property="email"style="width:220px"/>  
                                                     <display:column  title="Status" property="status" sortable="true" sortName="status"style="width:100px"/>  
                                                     <display:column  title="Tipo" property="tipoUsuario" sortable="true" sortName="tipoUsuario" style="width:100px" />   
-                                                    <display:column  title="Account" property="idAccount" sortable="true" sortName="idAccount" style="width:100px" />
+                                                    <display:column  title="Tipo" property="tipoUsuario" sortable="true" sortName="idAccount" style="width:100px" />
+
+
                                                 </display:table> 
-                                                
+
                                             </div>
                                             <!-- /.table-responsive -->
                                             <div class="well">

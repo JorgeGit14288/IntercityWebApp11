@@ -56,9 +56,9 @@
     <script src="${pageContext.request.contextPath}/resources/theme1/data/morris-data.js"></script>
     
      <!-- DataTables JavaScript -->
-    <script src="${pageContext.request.contextPath}/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="${pageContext.request.contextPath}/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/theme1/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/theme1/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/theme1/vendor/datatables-responsive/dataTables.responsive.js"></script>
     
     
     </head>

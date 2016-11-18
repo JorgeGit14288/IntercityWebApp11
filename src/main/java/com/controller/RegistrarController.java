@@ -166,7 +166,7 @@ public class RegistrarController {
                     if (telDao.createTelefono(telefono) == true) {
                         mensaje = null;
                         sesUser = telefono.getTelefonoArea();
-                        
+
                         sesion.setAttribute("usuario", sesUser);
                         sesion.setAttribute("tipoUsuario", usuario.getTipoUsuario());
                         mensaje = "Bienvenido";
@@ -186,8 +186,14 @@ public class RegistrarController {
                 }
 
                 if (telDao.updateTelefono(telefono)) {
-                    mav.setViewName("panel/panel");
-                    //this.setCodigo(null);
+
+                    if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                        mav.setViewName("viewsAdmin/panelAdmin");
+                        System.out.println("el usuario es administrador");
+                    } else {
+                        mav.setViewName("panel/panel");
+                    }
+
                 } else {
                     mensaje = "El codigo es correcto, pero no se ha podido cargar a su cuenta";
                     mav.addObject("mensaje", mensaje);
@@ -218,25 +224,6 @@ public class RegistrarController {
             return this.getCodigo();
             // return this.createCodigo();
         }
-    }
-
-    @ModelAttribute("listaCodigos")
-    public List<String> getAllCodigos() {
-        List<String> lista = new ArrayList<String>();
-        lista.add("1");//EEUU
-        lista.add("1");//canada
-        lista.add("51");//Peru
-        lista.add("52");//Mexico
-        lista.add("53");//Cuba
-        lista.add("56");//Chile
-        lista.add("1");//canada
-        lista.add("502");//Guatemala
-        lista.add("503");//El Salvador
-        lista.add("504");//Honduras
-        lista.add("505");//Nicaragua
-        lista.add("506");//Costa Rica
-        lista.add("507");//panama   
-        return lista;
     }
 
 }

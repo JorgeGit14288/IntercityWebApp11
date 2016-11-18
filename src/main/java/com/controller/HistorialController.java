@@ -13,12 +13,10 @@ import com.jsonEntitys.Llamadas;
 import com.jsonEntitys.Recarga;
 import com.util.httpHistorial;
 import com.util.httpRecargas;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,6 +31,16 @@ public class HistorialController {
     HttpSession sesion;
     String sesionUser;
     String mensaje;
+    String startDate;
+    String endDate;
+    String destination;
+    String idAccount;
+    int pagenext;
+    int pageprevius;
+    int page = 1;
+    int max = 10;
+    List<Llamadas> llamadas;
+    List<Recarga> recargas;
 
     @RequestMapping("historial.htm")
     public ModelAndView Historial(HttpServletRequest request) {
@@ -45,14 +53,27 @@ public class HistorialController {
             mav.setViewName("login/login");
 
         } else {
-            mav.setViewName("historial/historial");
+            page = 1;
+            pagenext = page + 1;
+            pageprevius = page - 1;
+            mav.addObject("pagenext", pagenext);
+            mav.addObject("pageprevius", pageprevius);
+            mav.addObject("page", page);
+            mav.addObject("max", max);
+            if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                mav.setViewName("viewsAdmin/historialAdmin");
+                System.out.println("El usuario es administrador ");
+            } else {
+                mav.setViewName("historial/historial");
+            }
+
         }
 
         return mav;
 
     }
 
-    @RequestMapping(value = "getHistorial.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "getHistorial.htm", method = RequestMethod.GET)
     public ModelAndView getHistorial(HttpServletRequest request) {
         sesion = request.getSession();
         ModelAndView mav = new ModelAndView();
@@ -70,32 +91,87 @@ public class HistorialController {
             TelefonosDao telDao = new TelefonosDao();
             telefono = telDao.getTelefono(telUser);
             usuario = userDao.getUsuario(telefono.getUsuarios().getIdUsuario());
-            String idAccount = usuario.getIdAccount();
-            //String idAccount ="22";
+            idAccount = usuario.getIdAccount();
 
-            String page = request.getParameter("page");
-            String max = request.getParameter("max");
-            String startDate = request.getParameter("startDate");
-            String endDate = request.getParameter("endDate");
-            String destination = request.getParameter("destination");
-            
-            System.out.println(idAccount +" "+page+" "+max+" "+startDate+" "+endDate+" "+destination+" ");
+            //String idAccount = "22";
+            String max2 = request.getParameter("max");
+            String startDate2 = request.getParameter("startDate");
+            String endDate2 = request.getParameter("endDate");
+            String destination2 = request.getParameter("destination");
+            String page2 = request.getParameter("page");
+            if (max2 != null) {
+                max = Integer.valueOf(max2);
+            }
+            if (startDate2 != null) {
+                startDate = startDate2;
+            }
+            if (endDate2 != null) {
+                endDate = endDate2;
+            }
+            if (destination2 != null) {
+                destination = destination2;
+            }
+            if (page2 != null) {
+                page = Integer.parseInt(page2);
+            }
+            if (page == 1) {
+                pageprevius = 1;
+            } else {
+                pageprevius = page - 1;
+            }
 
-            httpHistorial historial = new httpHistorial();
+            pagenext = page + 1;
 
-            List<Llamadas> llamadas = historial.getHistorial(idAccount, page, max, startDate, endDate, destination);
+            System.out.println(idAccount + " " + page + " " + max + " " + startDate + " " + endDate + " " + destination + " ");
+
+            this.llenarHistorial(idAccount, startDate, endDate, String.valueOf(page), String.valueOf(max), destination);
             if (llamadas.isEmpty()) {
                 mensaje = "No Existe historial de llamadas en las fechas comprendidas";
+                mav.addObject("startDate", startDate);
+                mav.addObject("endDate", endDate);
+                mav.addObject("page", page);
+                mav.addObject("pagenext", pagenext);
+                mav.addObject("pageprevius", pageprevius);
+                mav.addObject("max", max);
+                mav.addObject("destination", destination);
                 mav.addObject("mensaje", mensaje);
-                mav.setViewName("historial/historial");
+
+                if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                    mav.setViewName("viewsAdmin/historialAdmin");
+                } else {
+                    mav.setViewName("historial/historial");
+                }
+
             } else {
+                mav.addObject("startDate", startDate);
+                mav.addObject("endDate", endDate);
+                mav.addObject("pagenext", pagenext);
+                mav.addObject("pageprevius", pageprevius);
+                mav.addObject("page", page);
+                mav.addObject("max", max);
+                mav.addObject("destination", destination);
                 mav.addObject("llamadas", llamadas);
-                mav.setViewName("historial/historial");
+                if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                    mav.setViewName("viewsAdmin/historialAdmin");
+                } else {
+                    mav.setViewName("historial/historial");
+                }
+
             }
         }
-
         return mav;
     }
+
+    public void llenarHistorial(String idAccount, String startDate, String endDate, String page, String max, String destination) {
+        httpHistorial historial = new httpHistorial();
+        this.llamadas = historial.getHistorial(idAccount, page, max, startDate, endDate, destination);
+    }
+
+    public void llenarRecargas(String idAccount, String startDate, String endDate, String page, String max) {
+        httpRecargas recargaHelper = new httpRecargas();
+        recargas = recargaHelper.getRecargas(idAccount, page, max, startDate, endDate);
+    }
+
     @RequestMapping("recargas.htm")
     public ModelAndView Recargas(HttpServletRequest request) {
         sesion = request.getSession();
@@ -107,14 +183,26 @@ public class HistorialController {
             mav.setViewName("login/login");
 
         } else {
-            mav.setViewName("historial/recargas");
+            page = 1;
+            pagenext = page + 1;
+            pageprevius = page - 1;
+            mav.addObject("pagenext", pagenext);
+            mav.addObject("pageprevius", pageprevius);
+            mav.addObject("page", page);
+            mav.addObject("max", max);
+            if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                mav.setViewName("viewsAdmin/recargasAdmin");
+                System.out.println("el usuario es administrador");
+            } else {
+                mav.setViewName("historial/recargas");
+            }
         }
 
         return mav;
 
     }
 
-    @RequestMapping(value = "getRecargas.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "getRecargas.htm", method = RequestMethod.GET)
     public ModelAndView getRecargas(HttpServletRequest request) {
         sesion = request.getSession();
         ModelAndView mav = new ModelAndView();
@@ -125,6 +213,7 @@ public class HistorialController {
             mav.setViewName("login/login");
 
         } else {
+
             String telUser = sesion.getAttribute("usuario").toString();
             Usuarios usuario = new Usuarios();
             UsuariosDao userDao = new UsuariosDao();
@@ -132,31 +221,73 @@ public class HistorialController {
             TelefonosDao telDao = new TelefonosDao();
             telefono = telDao.getTelefono(telUser);
             usuario = userDao.getUsuario(telefono.getUsuarios().getIdUsuario());
-            String idAccount = usuario.getIdAccount();
-            //String idAccount ="22";
+            idAccount = usuario.getIdAccount();
 
-            String page = request.getParameter("page");
-            String max = request.getParameter("max");
-            String startDate = request.getParameter("startDate");
-            String endDate = request.getParameter("endDate");
-           
-            
-            System.out.println(idAccount +"Pagina "+page+" Maximo  "+max+" fecha inicial "+startDate+" fecha final "+endDate);
-
-            httpRecargas recargaHelper = new httpRecargas();
-
-            List<Recarga> recargas = recargaHelper.getRecargas(idAccount, page, max, startDate, endDate);
-            if (recargas.isEmpty()) {
-                mensaje = "No se encontro historial de recargas";
-                mav.addObject("mensaje", mensaje);
-                mav.setViewName("historial/recargas");
+            //String idAccount = "22";
+            String max2 = request.getParameter("max");
+            String startDate2 = request.getParameter("startDate");
+            String endDate2 = request.getParameter("endDate");
+            String destination2 = request.getParameter("destination");
+            String page2 = request.getParameter("page");
+            if (max2 != null) {
+                max = Integer.valueOf(max2);
+            }
+            if (startDate2 != null) {
+                startDate = startDate2;
+            }
+            if (endDate2 != null) {
+                endDate = endDate2;
+            }
+            if (destination2 != null) {
+                destination = destination2;
+            }
+            if (page2 != null) {
+                page = Integer.parseInt(page2);
+            }
+            if (page == 1) {
+                pageprevius = 1;
             } else {
-                mav.addObject("recargas", recargas);
-                mav.setViewName("historial/recargas");
+                pageprevius = page - 1;
+            }
+
+            pagenext = page + 1;
+
+            System.out.println("account" + idAccount + " page  " + page + " max " + max + " startDate " + startDate + " endDate " + endDate);
+
+            this.llenarRecargas(idAccount, startDate, endDate, String.valueOf(page), String.valueOf(max));
+            if (recargas.isEmpty()) {
+                mensaje = "No Existe historial de llamadas en las fechas comprendidas";
+                mav.addObject("startDate", startDate);
+                mav.addObject("endDate", endDate);
+                mav.addObject("page", page);
+                mav.addObject("pagenext", pagenext);
+                mav.addObject("pageprevius", pageprevius);
+                mav.addObject("max", max);
+                mav.addObject("mensaje", mensaje);
+
+                if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                    mav.setViewName("viewsAdmin/recargasAdmin");
+                    System.out.println("el usuario es administrador");
+                } else {
+                    mav.setViewName("historial/recargas");
+                }
+
+            } else {
+                mav.addObject("startDate", startDate);
+                mav.addObject("endDate", endDate);
+                mav.addObject("pagenext", pagenext);
+                mav.addObject("pageprevius", pageprevius);
+                mav.addObject("page", page);
+                mav.addObject("max", max);
+
+                if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                    mav.setViewName("viewsAdmin/recargasAdmin");
+                } else {
+                    mav.setViewName("historial/recargas");
+                }
             }
         }
-
         return mav;
     }
-   
+
 }

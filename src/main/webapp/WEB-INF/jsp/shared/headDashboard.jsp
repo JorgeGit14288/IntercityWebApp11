@@ -11,22 +11,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
           <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath}/resources/theme1/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- MetisMenu CSS -->
     <link href="${pageContext.request.contextPath}/resources/theme1/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/resources/theme1/dist/css/sb-admin-2.css" rel="stylesheet">
-    
-    <link href="${pageContext.request.contextPath}/resources/theme1/vendor/morrisjs/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="${pageContext.request.contextPath}/resources/theme1/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
       <!-- DataTables CSS -->
     <link href="${pageContext.request.contextPath}/resources/theme1/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
     <!-- DataTables Responsive CSS -->
     <link href="${pageContext.request.contextPath}/resources/theme1/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <!-- morris -->
+    <link href="${pageContext.request.contextPath}/resources/theme1/vendor/morrisjs/morris.css" rel="stylesheet">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -56,9 +52,9 @@
     <script src="${pageContext.request.contextPath}/resources/theme1/data/morris-data.js"></script>
     
      <!-- DataTables JavaScript -->
-    <script src="${pageContext.request.contextPath}/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="${pageContext.request.contextPath}/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/theme1/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/theme1/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/theme1/vendor/datatables-responsive/dataTables.responsive.js"></script>
     
     <script>
     $(document).ready(function() {

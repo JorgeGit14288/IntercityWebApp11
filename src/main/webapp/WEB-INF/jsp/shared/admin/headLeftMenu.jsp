@@ -53,10 +53,10 @@
                     <a href="#"><i class="fa fa-phone-square fa-fw"></i> Historial de Llamadas<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="historialAdmin.htm">Historial de Llamadas</a>
+                            <a href="historial.htm">Historial de Llamadas</a>
                         </li>
                         <li>
-                            <a href="recargasAdmin.htm">Hisorial de Recargas</a>
+                            <a href="recargas.htm">Hisorial de Recargas</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -68,7 +68,7 @@
                             <a href="perfilAdmin.htm">Perfil </a>
                         </li>
                         <li>
-                            <a href="editarPerfil.htm">Editar Perfil</a>
+                            <a href="editarPerfilAdmin.htm">Editar Perfil</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

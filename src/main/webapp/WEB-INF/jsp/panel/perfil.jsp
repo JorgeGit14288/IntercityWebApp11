@@ -119,7 +119,7 @@
                                 <i class="fa fa-info-circle fa-fw"></i> Informacion
                             </div>
                             <div class="panel-body">
-                                <p>Vienvenido a InterCity, en esta aplicacion web usted podra gestionar su cuenta de usuario </p>
+                                <p>Bienvenido a InterCity, en esta aplicacion web usted podra gestionar su cuenta de usuario </p>
                             </div>
                             <div class="panel-footer">
                                 InterCity WebApp

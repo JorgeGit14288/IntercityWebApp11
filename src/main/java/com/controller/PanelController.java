@@ -32,7 +32,12 @@ public class PanelController {
 
         } else {
             sesionUser = sesion.getAttribute("usuario").toString();
-            mav.setViewName("panel/panel");
+             if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                mav.setViewName("viewsAdmin/panelAdmin");
+                System.out.println("el usuario es administrador");
+            } else {
+                mav.setViewName("panel/panel");
+            }
         }
         return mav;
 

@@ -8,13 +8,18 @@ package com.controller;
 import com.dao.UsuariosDao;
 import com.jsonEntitys.Account;
 import com.entitys.Telefonos;
+import com.entitys.Usuarios;
+import com.jsonEntitys.AccountLight;
 import com.util.httpAccount;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -39,36 +44,132 @@ public class PerfilController {
             mav.setViewName("login/login");
 
         } else {
-            sesionUser = sesion.getAttribute("usuario").toString();
-            mav.setViewName("panel/perfil");
-        }
-
-        return mav;
-    }
-
-    @ModelAttribute("account")
-    public Account listaUsuarios(HttpServletRequest request) {
-        sesion = request.getSession();
-        //Data referencing for web framework checkboxes
-        Account account = new Account();
-        ModelAndView mav = new ModelAndView();
-        if (sesion.getAttribute("usuario") == null) {
-
-        } else {
             String sesUser = sesion.getAttribute("usuario").toString();
             String temp = sesUser.replace("-", "");
             System.out.println(temp);
+            Account account = new Account();
             httpAccount accountHelper = new httpAccount();
             account = accountHelper.getAccountObject(temp);
             System.out.println("Regrese con datos para la vista " + account.getFirst_name() + account.getLanguaje_id());
             mav.addObject("account", account);
+            sesionUser = sesion.getAttribute("usuario").toString();
+            if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                mav.setViewName("viewsAdmin/perfilAdmin");
+                System.out.println("el usuario es administrador");
+            } else {
+                mav.setViewName("panel/perfil");
+            }
         }
-
-        return account;
-
+        return mav;
     }
-    
-    
 
-   
+    @RequestMapping("editarPerfil.htm")
+    public ModelAndView registrarUsuarios(HttpServletRequest request
+    ) {
+        sesion = request.getSession();
+        ModelAndView mav = new ModelAndView();
+        String mensaje = null;
+
+        if (sesion.getAttribute("usuario") == null) {
+            mav.setViewName("login/login");
+
+        } else {
+            String sesUser = sesion.getAttribute("usuario").toString();
+            //Data referencing for web framework checkboxes
+            httpAccount accountHelper = new httpAccount();
+            String idAccount = accountHelper.getIdAccount(sesUser);
+
+            if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                mav.setViewName("viewsAdmin/editarPerfilAdmin");
+            } else {
+                mav.setViewName("perfil/editarPerfil");
+            }
+        }
+        return mav;
+    }
+
+    @RequestMapping(value = "validarEditarPerfil.htm", method = RequestMethod.POST)
+    public ModelAndView validarRegistrarUsuarios(HttpServletRequest request
+    ) throws MalformedURLException, IOException {
+        sesion = request.getSession();
+        ModelAndView mav = new ModelAndView();
+        String mensaje = null;
+        if (sesion.getAttribute("usuario") == null) {
+            mav.setViewName("login/login");
+        } else {
+            String idUsuario = request.getParameter("idUsuario");
+            String TelArea = request.getParameter(sesion.getAttribute("usuario").toString());
+            String nombres = request.getParameter("nombres");
+            String apellidos = request.getParameter("apellidos");
+            String direccion = request.getParameter("direccion");
+            String ciudad = request.getParameter("ciudad");
+            String codigoPostal = request.getParameter("codigoPostal");
+            String email = request.getParameter("email");
+            String lenguaje = request.getParameter("lenguaje");
+            boolean notifyEmail = false;
+            boolean notifyFlag = false;
+
+            if (request.getParameter("notifyEmail") != null) {
+                notifyEmail = true;
+            }
+            if (request.getParameter("notifyFlag") != null) {
+                notifyFlag = true;
+            }
+            AccountLight account = new AccountLight();
+            Usuarios usuario = new Usuarios();
+            UsuariosDao userDao = new UsuariosDao();
+
+            account.setAddress(direccion);
+            account.setCity(ciudad);
+            account.setEmail(email);
+            account.setFirstName(nombres);
+            account.setLastName(apellidos);
+            account.setNotifyEmail(notifyEmail);
+            account.setNotifyEmail(notifyEmail);
+            account.setPostalCode(codigoPostal);
+            account.setLanguaje_id(lenguaje);
+
+            usuario = userDao.getUsuario(idUsuario);
+
+            usuario.setApellidos(apellidos);
+            usuario.setEmail(email);
+            //usuario.setIdUsuario(idUsuario);
+            System.out.print("el id del usuario es " + idUsuario);
+            usuario.setNombres(nombres);
+            usuario.setPais(ciudad);
+            usuario.setStatus("Activo");
+
+            httpAccount accountHelper = new httpAccount();
+
+            if (userDao.updateUsuarios(usuario)) {
+
+                usuario = userDao.getUsuario(idUsuario);
+                if (usuario.getIdAccount() == null) {
+                    System.out.println("No se ha enontrado el accountId del usuario se buscara");
+                    usuario.setIdAccount(accountHelper.getIdAccount(TelArea));
+                    userDao.updateUsuarios(usuario);
+                    System.out.println("Se ha registrado el usuario con el servidor en linea ");
+                } else {
+                    System.out.println("Se encontro el accountId del usuario ");
+                    accountHelper.setAccountObject(account, usuario.getIdAccount());
+                    System.out.println("se ha actualizado el usuario al servidor ");
+                }
+
+                if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                    mav.setViewName("viewsAdmin/perfilAdmin");
+                } else {
+                    mav.setViewName("panel/perfil");
+                }
+            } else {
+                if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                    mav.setViewName("viewsAdmin/editarPerfilAdmin");
+                } else {
+                    mav.setViewName("perfil/editarPerfil");
+                }
+
+            }
+        }
+        return mav;
+    }
+
 }
