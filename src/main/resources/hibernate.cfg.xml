@@ -37,15 +37,30 @@ However, if you add GPL Version 2 code and therefore, elected the GPL
 Version 2 license, then the option applies only if the new code is
 made subject to such option by the copyright holder.
 
+
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://192.168.5.35:3306/customerappDb?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">api</property>
+    <property name="hibernate.connection.password">api</property>
+   <mapping resource="com/entitys/Usuarios.hbm.xml"/>
+    <mapping resource="com/entitys/Telefonos.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
 Contributor(s):
 -->
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/intercity2?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/customerappDb?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <mapping resource="com/entitys/Usuarios.hbm.xml"/>
     <mapping resource="com/entitys/Telefonos.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
+
+
+

@@ -1,17 +1,3 @@
-
-
-<script>
-function comprobarClave(){
-	clave1 = document.f1.password.value
-	clave2 = document.f1.confirmPassword.value
-	
-	if (clave1 == clave2)
-		alert("Las dos claves son iguales...\nRealizaríamos las acciones del caso positivo")
-	else
-		alert("Las dos claves son distintas...\nRealizaríamos las acciones del caso negativo")
-            document.f1.submit()
-}
-</script>
 <%@ page session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,6 +16,33 @@ function comprobarClave(){
         <title>LOGIN</title>
 
         <jsp:include page="../shared/headLogin.jsp" />
+        <script>
+            $("#formRegistro").validate({
+                rules: {
+                    password: {
+                        required: true,
+                        minlength: 6,
+                        maxlength: 25,
+
+                    },
+
+                    confirmPassword: {
+                        equalTo: "#password",
+                        minlength: 6,
+                        maxlength: 25
+                    }
+
+
+                },
+                messages: {
+                    password: {
+                        required: "the password is required"
+
+                    }
+                }
+
+            });
+        </script>
 
     </head>
 
@@ -43,7 +56,7 @@ function comprobarClave(){
                             <center> <h3 class="panel-title">REGISTRO DE USUARIOS</h3></center> 
                         </div>
                         <div class="panel-body">
-                            <form name="f1" class="form-Registro" method="POST" action="validarRegistro.htm" >
+                            <form name="formRegistro" class="form-Registro" method="POST" action="validarRegistro.htm" >
                                 <center>      <label>  <h4 class="form-signin-heading">INGRESE SUS DATOS </h4> </label>    </center>     
                                 <label for="codigoArea" >Codigo de Area</label>
                                 <select name="codigo"  required  >
@@ -67,7 +80,7 @@ function comprobarClave(){
                                 <label for="inputPassword" class="sr-only">Password</label>
                                 <input type="password" name="password"  id="inputPassword" class="form-control" placeholder="Password" required >
                                 <label for="confirmPassword" class="sr-only">Confiramar Password</label>
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Confirmar Password" required>
+                                <input type="password" name="confirmPassword" id="inputPassword" class="form-control" placeholder="Confirmar Password" required>
 
 
 
@@ -81,10 +94,10 @@ function comprobarClave(){
                             </form>
                             <div>
                                 <center>
-                                    
+
                                     <br>
                                     <a href="recuperar.htm">Recuperar una cuenta existente</a>
-                                   
+
                                     <br>
                                 </center>
                             </div>
