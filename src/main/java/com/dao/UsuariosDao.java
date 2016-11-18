@@ -52,6 +52,7 @@ public class UsuariosDao implements IUsuariosDao {
 
     public Usuarios getUsuario(String id) throws HibernateException {
         Usuarios user = null;
+         System.out.println("estoy en Hibernate  y busco "+ id);
         try {
             iniciaOperacion();
             String queryString = "from Usuarios where idUsuario = :id";
@@ -61,6 +62,7 @@ public class UsuariosDao implements IUsuariosDao {
             System.out.println("El usuario existe" + user.getNombres());
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("No se encontro el usuario" + id);
 
         } finally {
             sesion.close();

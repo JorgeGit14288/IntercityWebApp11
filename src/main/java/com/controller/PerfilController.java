@@ -5,6 +5,7 @@
  */
 package com.controller;
 
+import com.dao.TelefonosDao;
 import com.dao.UsuariosDao;
 import com.jsonEntitys.Account;
 import com.entitys.Telefonos;
@@ -75,14 +76,26 @@ public class PerfilController {
 
         } else {
             String sesUser = sesion.getAttribute("usuario").toString();
-            //Data referencing for web framework checkboxes
+            System.out.println("el usuario a editar es "+sesUser);
             httpAccount accountHelper = new httpAccount();
             String idAccount = accountHelper.getIdAccount(sesUser);
+            
+            TelefonosDao telDao = new TelefonosDao();
+            Telefonos telefono = new Telefonos();
+            telefono = telDao.getTelefono(sesUser);
+            
+            
+            Usuarios usuario = new Usuarios();
+            UsuariosDao userDao = new UsuariosDao();
+            usuario = userDao.getUsuario(telefono.getUsuarios().getIdUsuario());
+            
+            mav.addObject("telefono", telefono);
+            mav.addObject("user", usuario);
 
             if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
                 mav.setViewName("viewsAdmin/editarPerfilAdmin");
             } else {
-                mav.setViewName("perfil/editarPerfil");
+                mav.setViewName("panel/editarPerfil");
             }
         }
         return mav;
