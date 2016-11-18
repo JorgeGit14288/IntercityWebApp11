@@ -39,9 +39,14 @@ public class TelefonosDao implements ITelefonosDao {
             iniciaOperacion();
             listaTelefonoss = sesion.createQuery("from Telefonos").list();
             System.out.println("se ha devuelto una lista del servidor");
-        } finally {
+        } 
+        catch(Exception e){
+            System.out.println("Error al devolver lista");
+            e.printStackTrace();
+        }
+        finally {
             sesion.close();
-             System.out.println("Error al devolver lista");
+             
         }
         
 
@@ -106,10 +111,10 @@ public class TelefonosDao implements ITelefonosDao {
             sesion.delete(tel);
             tx.commit();
             resultado = true;
-             System.out.println("Se ha eliminado un registro telefonicon "+tel.getCodigoArea());
+             System.out.println("Se ha eliminado un registro telefonico "+tel.getCodigoArea());
         } catch (HibernateException he) {
             manejaExcepcion(he);
-            System.out.println("NO Se ha eliminado un registro telefonicon "+tel.getTelefonoArea());
+            System.out.println("NO Se ha eliminado un registro telefonico "+tel.getTelefonoArea());
             throw he;
         } finally {
             sesion.close();

@@ -17,7 +17,7 @@ import com.entitys.Usuarios;
 import com.util.Cifrar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
@@ -45,12 +45,13 @@ public class TelefonosController {
                 mav.addObject("mensaje", mensaje);
                 mav.setViewName("login/login");
             } else {
-
-                if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
                    TelefonosDao telDao = new TelefonosDao();
                     List<Telefonos> listTelefonos = telDao.getAllTelefonos();
-                    mav.addObject("listaTelefonos", listTelefonos);
-                    mav.setViewName("telefonos/telefonos");
+                if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                   System.out.println("Vista Administrador");
+                   
+                   mav.addObject("listaTelefonos", listTelefonos);
+                   mav.setViewName("telefonos/telefonos");
                 } else {
                     mav.setViewName("panel/panel");
                 }
@@ -64,32 +65,6 @@ public class TelefonosController {
         }
 
         return mav;
-    }
-
-    //al llamar a la vista index para mostrar el usuario, esta requerira de la lista de usuarios 
-    // la cual se almacenan en este atributo
-    @ModelAttribute("listTel")
-    public List<Telefonos> listaUsuarios() {
-
-        //Data referencing for web framework checkboxes
-        ModelAndView mav = new ModelAndView();
-        TelefonosDao userHelper = new TelefonosDao();
-        List<Telefonos> telefonosList = userHelper.getAllTelefonos();
-        return telefonosList;
-    }
-
-    @ModelAttribute("userTels")
-    public List<Telefonos> listaTelUser(HttpServletRequest request) {
-        sesion = request.getSession();
-        String uSesion = sesion.getAttribute("usuario").toString();
-        System.out.println("Buscando los telefonos de " + uSesion);
-        ModelAndView mav = new ModelAndView();
-        TelefonosDao userHelper = new TelefonosDao();
-
-        List<Telefonos> telefonosList = userHelper.getAllTelUser(uSesion);
-
-        System.out.println("Pase por el controlador");
-        return telefonosList;
     }
 
     // este medoto recibe el numero del telefono del usuario, para mostrar su configuracion.

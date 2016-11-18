@@ -63,9 +63,75 @@ public class PerfilController {
         }
         return mav;
     }
+    
+    @RequestMapping("perfilAdmin.htm")
+    public ModelAndView getPerfilAdmin(HttpServletRequest request) {
+        sesion = request.getSession();
+        ModelAndView mav = new ModelAndView();
+        String mensaje = null;
+
+        if (sesion.getAttribute("usuario") == null) {
+
+            mav.setViewName("login/login");
+
+        } else {
+            String sesUser = sesion.getAttribute("usuario").toString();
+            String temp = sesUser.replace("-", "");
+            System.out.println(temp);
+            Account account = new Account();
+            httpAccount accountHelper = new httpAccount();
+            account = accountHelper.getAccountObject(temp);
+            System.out.println("Regrese con datos para la vista " + account.getFirst_name() + account.getLanguaje_id());
+            mav.addObject("account", account);
+            sesionUser = sesion.getAttribute("usuario").toString();
+            if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                mav.setViewName("viewsAdmin/perfilAdmin");
+                System.out.println("el usuario es administrador");
+            } else {
+                mav.setViewName("panel/perfil");
+            }
+        }
+        return mav;
+    }
 
     @RequestMapping("editarPerfil.htm")
     public ModelAndView registrarUsuarios(HttpServletRequest request
+    ) {
+        sesion = request.getSession();
+        ModelAndView mav = new ModelAndView();
+        String mensaje = null;
+
+        if (sesion.getAttribute("usuario") == null) {
+            mav.setViewName("login/login");
+
+        } else {
+            String sesUser = sesion.getAttribute("usuario").toString();
+            System.out.println("el usuario a editar es "+sesUser);
+            httpAccount accountHelper = new httpAccount();
+            String idAccount = accountHelper.getIdAccount(sesUser);
+            
+            TelefonosDao telDao = new TelefonosDao();
+            Telefonos telefono = new Telefonos();
+            telefono = telDao.getTelefono(sesUser);
+            
+            
+            Usuarios usuario = new Usuarios();
+            UsuariosDao userDao = new UsuariosDao();
+            usuario = userDao.getUsuario(telefono.getUsuarios().getIdUsuario());
+            
+            mav.addObject("telefono", telefono);
+            mav.addObject("user", usuario);
+
+            if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+                mav.setViewName("viewsAdmin/editarPerfilAdmin");
+            } else {
+                mav.setViewName("panel/editarPerfil");
+            }
+        }
+        return mav;
+    }
+     @RequestMapping("editarPerfilAdmin.htm")
+    public ModelAndView editarPerfilAdmin(HttpServletRequest request
     ) {
         sesion = request.getSession();
         ModelAndView mav = new ModelAndView();
@@ -184,5 +250,7 @@ public class PerfilController {
         }
         return mav;
     }
+    
+    
 
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 6/11/2016 11:42:33 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 18/11/2016 12:25:23 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.entitys.Usuarios" table="usuarios" catalog="intercity2" optimistic-lock="version">
+    <class name="com.entitys.Usuarios" table="usuarios" catalog="customerappDb" optimistic-lock="version">
         <id name="idUsuario" type="string">
             <column name="idUsuario" length="25" />
             <generator class="assigned" />
