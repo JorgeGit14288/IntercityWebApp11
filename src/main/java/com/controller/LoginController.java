@@ -7,6 +7,7 @@ package com.controller;
 
 import com.dao.TelefonosDao;
 import com.dao.UsuariosDao;
+import com.entitys.Detalles;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.entitys.Telefonos;
 import com.entitys.Usuarios;
+import com.jsonEntitys.Account;
 import com.util.Cifrar;
+import com.util.httpAccount;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -67,14 +70,43 @@ public class LoginController {
 
             } else {
                 user = userDao.getUsuario(tel2.getUsuarios().getIdUsuario());
+                System.out.println("Los nombres del usuario " + user.getNombres());
                 System.out.println("DATOS EN SERVIDOR" + tel2.getTelefonoArea() + user.getPassword());
                 System.out.println("DATOS DEL USUARIO " + telefonoArea + pass);
                 if ((telefonoArea.compareTo(tel2.getTelefonoArea()) == 0) && (pass.compareTo(user.getPassword()) == 0)) {
                     String tipoUsuario = user.getTipoUsuario();
-
                     String userSesion = tel2.getTelefonoArea();
+                    String temp = userSesion.replace("-", "");
+                    System.out.println(temp);
+                    
+                    
+                    Account account = new Account();
+                    httpAccount accountHelper = new httpAccount();
+                    account = accountHelper.getAccountObject(temp);
+
+                    Detalles cuenta = new Detalles();
+
+                    cuenta.setIdUsuaro(user.getIdUsuario());
+                    cuenta.setTelefono(telefonoArea);
+                    cuenta.setAccountId(user.getIdAccount());
+
+                    cuenta.setNombres(account.getFirst_name());
+                    cuenta.setApellidos(account.getLast_name());
+                    cuenta.setDireccion(account.getAddress1());
+                    cuenta.setCiudad(account.getCity());
+                    cuenta.setCodigoPostal(account.getPostal_code());
+                    cuenta.setEmail(account.getEmail());
+                    cuenta.setLenguaje(account.getLanguaje_id());
+                    cuenta.setNotifiEmail(account.getNotify_email());
+                    cuenta.setNotifiFlag(account.getNotify_flag());
+                    cuenta.setSaldo(account.getBalance());
+                    
+                    System.out.print("El balance de la cuenta es "+cuenta.getSaldo());
+
                     sesion.setAttribute("usuario", userSesion);
                     sesion.setAttribute("tipoUsuario", tipoUsuario);
+                    sesion.setAttribute("cuenta", cuenta);
+
                     if (tipoUsuario.compareTo("Administrador") == 0) {
                         System.out.println("REDIRIGIENDO A VISTAS ADMINISTRADOR");
                         mensaje = "Bienvenido";
