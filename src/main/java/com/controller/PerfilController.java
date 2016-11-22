@@ -33,6 +33,7 @@ public class PerfilController {
 
     HttpSession sesion;
     String sesionUser;
+    Account account;
 
     @RequestMapping("perfil.htm")
     public ModelAndView getPerfil(HttpServletRequest request) {
@@ -48,7 +49,7 @@ public class PerfilController {
             String sesUser = sesion.getAttribute("usuario").toString();
             String temp = sesUser.replace("-", "");
             System.out.println(temp);
-            Account account = new Account();
+            account = new Account();
             httpAccount accountHelper = new httpAccount();
             account = accountHelper.getAccountObject(temp);
             System.out.println("Regrese con datos para la vista " + account.getFirst_name() + account.getLanguaje_id());
@@ -121,6 +122,7 @@ public class PerfilController {
             
             mav.addObject("telefono", telefono);
             mav.addObject("user", usuario);
+            mav.addObject("account", account);
 
             if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
                 mav.setViewName("viewsAdmin/editarPerfilAdmin");

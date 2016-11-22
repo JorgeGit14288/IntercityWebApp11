@@ -55,26 +55,26 @@
                                             <table class="table table-bordered table-hover table-striped">
                                                 <tbody>
                                                     <tr>
-                                                        <td>First Name:  </td>
+                                                        <td>Nombres:  </td>
                                                         <td>${account.getFirst_name()}</td>
 
                                                     </tr>
                                                     <tr>
-                                                        <td>Last Name: </td>
+                                                        <td>Apellidos: </td>
                                                         <td>${account.getLast_name()}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Address: </td>
+                                                        <td>Direccion: </td>
                                                         <td>${account.getAddress1()}</td>
 
                                                     </tr>
                                                     <tr>
-                                                        <td>City: </td>
+                                                        <td>Ciudad: </td>
                                                         <td>${account.getCity()}</td>
 
                                                     </tr>
                                                     <tr>
-                                                        <td>Postal Code: </td>
+                                                        <td>Codigo Postal: </td>
                                                         <td>${account.getPostal_code()}</td>
                                                     </tr>
                                                     <tr>
@@ -82,15 +82,15 @@
                                                         <td>${account.getEmail()}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Languaje</td>
+                                                        <td>Lenguaje</td>
                                                         <td>${account.getLanguaje_id()}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Notify Email: </td>
+                                                        <td>Notificar Emai: </td>
                                                         <td>${account.getNotify_email()}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Notity Flag: </td>
+                                                        <td>Notificar Flag: </td>
                                                         <td>${account.getNotify_flag()}</td>
                                                     </tr>
                                                 </tbody>

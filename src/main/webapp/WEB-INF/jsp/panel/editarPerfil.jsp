@@ -42,65 +42,67 @@
                                 </div>
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
+                                    <table>
 
-                                    <form class="form-Registro" method="POST" action="validarEditarPerfil.htm" >
-                                        <Center> <h4 class="form-signin-heading">Ingrese sus datos </h4> </Center>
-                                        <div class="form-group">
-                                            <label for="idUsuario" >Id Uusario</label>
-                                            <input type="text" readonly name="idUsuario" value ="${user.getIdUsuario()}" id="idUsuario" /> 
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="Telefono" >Telefonos:</label><br>
-                                        </div>
+                                        <form class="form-Registro" method="POST" action="validarEditarPerfil.htm" >
+                                            <Center> <h4 class="form-signin-heading">Ingrese sus datos </h4> </Center>
+                                            <div class="form-group">
+                                                <label for="idUsuario" >Id Uusario</label>
+                                                <input type="text" readonly name="idUsuario" value ="${user.getIdUsuario()}" id="idUsuario" /> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Telefono" >Telefonos:</label><br>
+                                            </div>
 
-                                        <c:forEach items="${listTel}" var="tel">
-                                            <input type="text"  name="telefono" value ="<c:out value="${tel.getTelefonoArea()}" />" id="telefonos" /> 
+                                            <c:forEach items="${listTel}" var="tel">
+                                                <input type="text"  name="telefono" value ="<c:out value="${tel.getTelefonoArea()}" />" id="telefonos" /> 
 
-                                        </c:forEach>
-                                        <div class="form-group">
-                                            <label for="nombres" >Nombres</label>
-                                            <input class="form-control-feedbackl" type="text"  name="nombres"  id="nombre" required placeholder="first name" /> <br>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="apellidos" >Apellidos</label>
-                                            <input class="form-control-feedbackl" type="text"  name="apellidos"  id="apellidos" required placeholder="last name" /><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="direccion" >Direccion</label>
-                                            <input class="form-control-feedbackl" type="text"  name="direccion"  id="direccion" required placeholder="address" /><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ciudad" >Ciudad</label>
-                                            <input class="form-control-feedbackl" type="text"  name="ciudad"  id="city" required placeholder="city" /><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="codigo" >Codigo Postal</label>
-                                            <input type="num" class="form-control-feedbackl"  name="codigoPostal"  id="nombre" required placeholder="postal code" /><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email" >E-mail</label>
-                                            <input type="email" class="form-control-feedbackl" name="email"  id="nombre" required placeholder="example@example.com" /><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="languaje"  >Lenguaje para su operador</label>
-                                            <select name="languaje"  required  >
-                                                <option value="Es">Español</option> 
-                                                <option value="En">Ingles</option> 
-                                            </select><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="notify Email" >Notificar a e-mail</label>
-                                            <input type="checkbox"  name="notifyEmail"  /><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="flag" >Notificar Flag</label>
-                                            <input type="checkbox"  name="notifyFlag"  /><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <button  type="submit"class="btn btn-primary" >Confirmar</button>
-                                            <button type="reset" class="btn btn-danger">Reiniciar form</button>
-                                        </div>
-                                    </form>
+                                            </c:forEach>
+                                            <div class="form-group">
+                                                <label for="nombres" >Nombres</label>
+                                                <input class="form-control-feedbackl" type="text"  name="nombres"  id="nombre" required placeholder="first name" value="${account.getFirst_name()}" /> <br>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="apellidos" >Apellidos</label>
+                                                <input class="form-control-feedbackl" type="text"  name="apellidos"  id="apellidos" required placeholder="last name" value="${account.getLast_name()}" /><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="direccion" >Direccion</label>
+                                                <input class="form-control-feedbackl" type="text"  name="direccion"  id="direccion" required placeholder="address" value="${account.getAddress1()}" /><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ciudad" >Ciudad</label>
+                                                <input class="form-control-feedbackl" type="text"  name="ciudad"  id="city" required placeholder="city" value="${account.getCity()}" /><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="codigo" >Codigo Postal</label>
+                                                <input type="num" class="form-control-feedbackl"  name="codigoPostal"  id="nombre" required placeholder="postal code" value="${account.getPostal_code()}" /><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email" >E-mail</label>
+                                                <input type="email" class="form-control-feedbackl" name="email"  id="nombre" required placeholder="example@example.com" value="${account.getEmail()}" /><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="languaje"  >Lenguaje para su operador</label>
+                                                <select name="languaje"  required  >
+                                                    <option value="Es">Español</option> 
+                                                    <option value="En">Ingles</option> 
+                                                </select><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="notify Email" >Notificar a e-mail</label>
+                                                <input type="checkbox"  name="notifyEmail"  /><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="flag" >Notificar Flag</label>
+                                                <input type="checkbox"  name="notifyFlag"  /><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <button  type="submit"class="btn btn-primary" >Confirmar</button>
+                                                <button type="reset" class="btn btn-danger">Reiniciar form</button>
+                                            </div>
+                                        </form>
+                                    </table>
 
                                     <div id="Error">
                                         <Br>
