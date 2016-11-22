@@ -5,11 +5,20 @@
  */
 package com.controller;
 
+import com.entitys.Detalles;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -17,7 +26,7 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class PanelController {
-    
+
     HttpSession sesion;
     String sesionUser;
 
@@ -32,7 +41,7 @@ public class PanelController {
 
         } else {
             sesionUser = sesion.getAttribute("usuario").toString();
-             if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
+            if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
                 mav.setViewName("viewsAdmin/panelAdmin");
                 System.out.println("el usuario es administrador");
             } else {
@@ -42,13 +51,16 @@ public class PanelController {
         return mav;
 
     }
-    
+
     @RequestMapping("panel2.htm")
     public ModelAndView getPanel2() {
-       
+
         ModelAndView mav = new ModelAndView();
-         mav.setViewName("panel/panel2");
+        mav.setViewName("panel/panel2");
         return mav;
 
     }
+
+   
+
 }

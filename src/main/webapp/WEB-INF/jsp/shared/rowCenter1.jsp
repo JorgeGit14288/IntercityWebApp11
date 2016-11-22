@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-            <a href="perfilAdmin.htm">
+            <a href="perfil.htm">
                 <div class="panel-footer">
                     <span class="pull-left">Ver Detalles</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <a href="historialAdmin.htm">
+            <a href="historial.htm">
                 <div class="panel-footer">
                     <span class="pull-left">Ver Detalles</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <a href="recargasAdmin.htm">
+            <a href="recargas.htm">
                 <div class="panel-footer">
                     <span class="pull-left">Ver Detalles</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

@@ -57,6 +57,7 @@
     <bean name="recuperarController" class="com.controller.RecuperarController"/>
     <bean name="historialController" class="com.controller.HistorialController"/>
     <bean name="adminController" class="com.controller.AdminController"/>
+    <bean name="cuotasController" class="com.controller.CuotasController"/>
    
     
     

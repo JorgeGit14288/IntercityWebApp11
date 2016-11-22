@@ -35,7 +35,7 @@
                 <div class="row">
                     <!-- CONTENIDO DINAMICO -->
                     <div class="col-lg-8">
-                        <div class="col-lg-12">
+                        <div class="col-lg-8">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
                                     <i class=""></i> <center><label>EDITAR PERFIL DE USUARIO</label></center>
@@ -48,43 +48,43 @@
                                             <Center> <h4 class="form-signin-heading">Ingrese sus datos </h4> </Center>
                                             <div class="form-group">
                                                 <label for="idUsuario" >Id Uusario</label>
-                                                <input type="text" readonly name="idUsuario" value ="${user.getIdUsuario()}" id="idUsuario" /> 
+                                                <input class="form-control" type="text" readonly name="idUsuario" value ="${user.getIdUsuario()}" id="idUsuario" /> 
                                             </div>
                                             <div class="form-group">
                                                 <label for="Telefono" >Telefonos:</label><br>
                                             </div>
 
                                             <c:forEach items="${listTel}" var="tel">
-                                                <input type="text"  name="telefono" value ="<c:out value="${tel.getTelefonoArea()}" />" id="telefonos" /> 
+                                                <input  class="form-control" type="text"  name="telefono" value ="<c:out value="${tel.getTelefonoArea()}" />" id="telefonos" /> 
 
                                             </c:forEach>
                                             <div class="form-group">
                                                 <label for="nombres" >Nombres</label>
-                                                <input class="form-control-feedbackl" type="text"  name="nombres"  id="nombre" required placeholder="first name" value="${account.getFirst_name()}" /> <br>
+                                                <input  class="form-control" type="text"  name="nombres"  id="nombre" required placeholder="first name" value="${account.getFirst_name()}" /> <br>
                                             </div>
                                             <div class="form-group">
                                                 <label for="apellidos" >Apellidos</label>
-                                                <input class="form-control-feedbackl" type="text"  name="apellidos"  id="apellidos" required placeholder="last name" value="${account.getLast_name()}" /><br>
+                                                <input  class="form-control" type="text"  name="apellidos"  id="apellidos" required placeholder="last name" value="${account.getLast_name()}" /><br>
                                             </div>
                                             <div class="form-group">
                                                 <label for="direccion" >Direccion</label>
-                                                <input class="form-control-feedbackl" type="text"  name="direccion"  id="direccion" required placeholder="address" value="${account.getAddress1()}" /><br>
+                                                <input  class="form-control" type="text"  name="direccion"  id="direccion" required placeholder="address" value="${account.getAddress1()}" /><br>
                                             </div>
                                             <div class="form-group">
                                                 <label for="ciudad" >Ciudad</label>
-                                                <input class="form-control-feedbackl" type="text"  name="ciudad"  id="city" required placeholder="city" value="${account.getCity()}" /><br>
+                                                <input  class="form-control" type="text"  name="ciudad"  id="city" required placeholder="city" value="${account.getCity()}" /><br>
                                             </div>
                                             <div class="form-group">
                                                 <label for="codigo" >Codigo Postal</label>
-                                                <input type="num" class="form-control-feedbackl"  name="codigoPostal"  id="nombre" required placeholder="postal code" value="${account.getPostal_code()}" /><br>
+                                                <input type="num"  class="form-control"  name="codigoPostal"  id="nombre" required placeholder="postal code" value="${account.getPostal_code()}" /><br>
                                             </div>
                                             <div class="form-group">
                                                 <label for="email" >E-mail</label>
-                                                <input type="email" class="form-control-feedbackl" name="email"  id="nombre" required placeholder="example@example.com" value="${account.getEmail()}" /><br>
+                                                <input type="email"  class="form-control" name="email"  id="nombre" required placeholder="example@example.com" value="${account.getEmail()}" /><br>
                                             </div>
                                             <div class="form-group">
                                                 <label for="languaje"  >Lenguaje para su operador</label>
-                                                <select name="languaje"  required  >
+                                                <select name="languaje"  required  class="form-control" >
                                                     <option value="Es">Español</option> 
                                                     <option value="En">Ingles</option> 
                                                 </select><br>
@@ -98,8 +98,8 @@
                                                 <input type="checkbox"  name="notifyFlag"  /><br>
                                             </div>
                                             <div class="form-group">
-                                                <button  type="submit"class="btn btn-primary" >Confirmar</button>
-                                                <button type="reset" class="btn btn-danger">Reiniciar form</button>
+                                                <button  type="submit"class="btn btn-primary form-group" >Confirmar</button>
+                                                <button type="reset" class="btn btn-danger form-group">Reiniciar form</button>
                                             </div>
                                         </form>
                                     </table>

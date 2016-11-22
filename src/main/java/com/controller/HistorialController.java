@@ -13,6 +13,9 @@ import com.jsonEntitys.Llamadas;
 import com.jsonEntitys.Recarga;
 import com.util.httpHistorial;
 import com.util.httpRecargas;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -47,6 +50,15 @@ public class HistorialController {
         sesion = request.getSession();
         ModelAndView mav = new ModelAndView();
 
+        Date Datenow = new Date(System.currentTimeMillis());
+        SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat hour = new SimpleDateFormat("HH:mm:ss");
+
+         endDate= date.format(Datenow);
+         System.out.println(endDate);
+      //  System.out.println(hour.format(Datenow));
+       // System.out.println(Datenow);
+
         if (sesion.getAttribute("usuario") == null) {
             mensaje = "No esta logeado para obtener las vistas";
             mav.addObject("mensaje", mensaje);
@@ -60,6 +72,9 @@ public class HistorialController {
             mav.addObject("pageprevius", pageprevius);
             mav.addObject("page", page);
             mav.addObject("max", max);
+            mav.addObject("endDate", endDate);
+            
+            
             if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
                 mav.setViewName("viewsAdmin/historialAdmin");
                 System.out.println("El usuario es administrador ");

@@ -109,8 +109,9 @@ public class PerfilController {
             String sesUser = sesion.getAttribute("usuario").toString();
             System.out.println("el usuario a editar es "+sesUser);
             httpAccount accountHelper = new httpAccount();
-            String idAccount = accountHelper.getIdAccount(sesUser);
-            
+            account = accountHelper.getAccountObject(sesUser);
+            String idAccount = account.getId();
+           
             TelefonosDao telDao = new TelefonosDao();
             Telefonos telefono = new Telefonos();
             telefono = telDao.getTelefono(sesUser);
@@ -146,7 +147,8 @@ public class PerfilController {
             String sesUser = sesion.getAttribute("usuario").toString();
             System.out.println("el usuario a editar es "+sesUser);
             httpAccount accountHelper = new httpAccount();
-            String idAccount = accountHelper.getIdAccount(sesUser);
+            account = accountHelper.getAccountObject(sesUser);
+            String idAccount = account.getId();
             
             TelefonosDao telDao = new TelefonosDao();
             Telefonos telefono = new Telefonos();
@@ -159,6 +161,7 @@ public class PerfilController {
             
             mav.addObject("telefono", telefono);
             mav.addObject("user", usuario);
+            mav.addObject("account", account);
 
             if (sesion.getAttribute("tipoUsuario").toString().compareTo("Administrador") == 0) {
                 mav.setViewName("viewsAdmin/editarPerfilAdmin");

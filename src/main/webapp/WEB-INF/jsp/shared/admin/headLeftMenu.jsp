@@ -98,6 +98,9 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="cuotas.htm"><i class="fa fa-money fa-fw"></i> Ver Cuotas</a>
+                </li>
+                <li>
                     <a href="logout.htm"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
                 </li>
             </ul>

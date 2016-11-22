@@ -10,7 +10,7 @@
     <div class="panel-body">
         <div class="list-group">
             <a href="#" class="list-group-item">
-                <i class="fa fa-comment fa-fw"></i> Telefono
+                <i class="fa fa-phone fa-fw"></i> Telefono
                 <span class="pull-right text-muted small"><em>${sessionScope.cuenta.getTelefono()}</em>
                 </span>
             </a>
@@ -20,30 +20,26 @@
                 </span>
             </a>
             <a href="#" class="list-group-item">
-                <i class="fa fa-money fa-fw"></i> Id Usuario
+                <i class="fa fa-check fa-fw"></i> Id Usuario
                 <span class="pull-right text-muted small"><em>${sessionScope.cuenta.getIdUsuaro()}</em>
                 </span>
             </a><a href="#" class="list-group-item">
-                <i class="fa fa-money fa-fw"></i> Nombres
+                <i class="fa fa-arrow-circle-o-right fa-fw"></i> Nombres
                 <span class="pull-right text-muted small"><em>${sessionScope.cuenta.getNombres()}</em>
                 </span>
             </a>
                 </a><a href="#" class="list-group-item">
-                <i class="fa fa-money fa-fw"></i> Pais
+                <i class="fa fa-flag fa-fw"></i> Pais
                 <span class="pull-right text-muted small"><em>${sessionScope.cuenta.getCiudad()}</em>
                 </span>
             </a>
                  </a>
                 </a><a href="#" class="list-group-item">
-                <i class="fa fa-money fa-fw"></i> Pais
+                <i class="fa fa-home fa-fw"></i> Email
                 <span class="pull-right text-muted small"><em>${sessionScope.cuenta.getEmail()}</em>
                 </span>
             </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-envelope fa-fw"></i> Mensajes
-                <span class="pull-right text-muted small"><em>27 </em>
-                </span>
-            </a>
+          
             <a href="historial.htm" class="list-group-item">
                 <i class="fa fa-tasks fa-fw"></i> Historial
                 <span class="pull-right text-muted small"><em>Ver Historial</em>
@@ -55,7 +51,7 @@
                 <span class="pull-right text-muted small"><em>Realizar Recarga</em>
                 </span>
             </a>
-            <a href="#" class="list-group-item">
+            <a href="cuotas.htm" class="list-group-item">
                 <i class="fa fa-money fa-fw"></i> Cuotas
                 <span class="pull-right text-muted small"><em>Lista de Precios</em>
                 </span>

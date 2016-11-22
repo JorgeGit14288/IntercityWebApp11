@@ -1,4 +1,4 @@
-<%-- 
+ <%-- 
     Document   : headDashboard
     Created on : 7/11/2016, 10:22:26 AM
     Author     : jorge
@@ -35,7 +35,8 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="${pageContext.request.contextPath}/resources/theme1/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/theme1/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/theme1/vendor/jquery/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="${pageContext.request.contextPath}/resources/theme1/vendor/bootstrap/js/bootstrap.min.js"></script>
